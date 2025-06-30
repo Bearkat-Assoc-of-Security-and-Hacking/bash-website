@@ -3,7 +3,7 @@ const Footer = () => {
   return (
     <footer className="bg-gray-800 text-white p-4 mt-8">
       <div className="container mx-auto text-center">
-        <p>&copy; {currentYear} BASH Club. All Rights Reserved.</p>
+        <p> Bearkat Association Of Security and Hacking {currentYear} </p>
       </div>
     </footer>
   );

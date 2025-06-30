@@ -1,15 +1,52 @@
-// components/OfficerCard.js
-const OfficerCard = ({ name, title, imageUrl }) => {
+// src/OfficerCard.js
+import { FaLinkedin, FaGithub } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
+
+const OfficerCard = ({ officer }) => {
+  const { name, title, details, socials } = officer;
+
   return (
-    <div className="bg-gray-700 p-4 rounded-lg text-center shadow-lg">
-      <img
-        src={imageUrl}
-        alt={`Photo of ${name}`}
-        className="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-blue-400"
-      />
-      <h3 className="text-xl font-bold">{name}</h3>
-      <p className="text-blue-300">{title}</p>
+    <div className="bg-white text-gray-800 p-6 rounded-lg shadow-lg flex flex-col h-full">
+      {/* Officer Info */}
+      <div className="flex-grow">
+        <h2 className="text-2xl font-bold">{name}</h2>
+        <p className="text-gray-500 mt-1">{title}</p>
+        <p className="text-gray-500 text-sm">{details}</p>
+      </div>
+
+      {/* Social Icons */}
+      <div className="mt-4 flex items-center space-x-3">
+        {socials.email && (
+          <a
+            href={socials.email}
+            className="text-gray-600 hover:text-blue-500 transition-colors"
+          >
+            <MdEmail size={24} />
+          </a>
+        )}
+        {socials.linkedin && (
+          <a
+            href={socials.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-600 hover:text-blue-500 transition-colors"
+          >
+            <FaLinkedin size={24} />
+          </a>
+        )}
+        {socials.github && (
+          <a
+            href={socials.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-600 hover:text-blue-500 transition-colors"
+          >
+            <FaGithub size={24} />
+          </a>
+        )}
+      </div>
     </div>
   );
 };
+
 export default OfficerCard;

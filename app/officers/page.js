@@ -1,41 +1,70 @@
+// app/officers/page.js
+
 import OfficerCard from "../../src/OfficerCard";
 
-// In a real app, you might fetch this from a database, but for now, we'll hardcode it.
+// UPDATE THIS DATA STRUCTURE
 const officers = [
   {
-    name: "Alice Johnson",
+    name: "Giovanni Martinez",
     title: "President",
-    imageUrl: "https://via.placeholder.com/150",
+    details: "Spring 2026", // Major and Year
+    socials: {
+      email: "mailto:gio.a.martinez03@gmail.com",
+      linkedin: "https://www.linkedin.com/in/gio-mart/",
+      github: "https://github.com/giomart1122",
+    },
   },
   {
-    name: "Bob Williams",
+    name: "Bruce Mikel",
     title: "Vice President",
-    imageUrl: "https://via.placeholder.com/150",
+    details: "Spring 2026",
+    socials: {
+      email: "mailto:mikelbruce230@gmail.com",
+      linkedin: "https://www.linkedin.com/in/bruce-mikel-7b373721b/",
+      github: "https://github.com/TipsyPhiber",
+    },
   },
   {
-    name: "Charlie Brown",
-    title: "Treasurer",
-    imageUrl: "https://via.placeholder.com/150",
-  },
-  {
-    name: "Diana Miller",
+    name: "Chase Cooper",
     title: "Secretary",
-    imageUrl: "https://via.placeholder.com/150",
+    details: "",
+    socials: {
+      email: "mailto:cmc233@SHSU.EDU",
+      linkedin: "",
+      github: "",
+    },
+  },
+  {
+    name: "Mason Murphy",
+    title: "Competition Director",
+    details: "",
+    socials: {
+      email: "mailto:mason.r.murphy@shsu.edu",
+      linkedin: "",
+      github: "",
+    },
+  },
+  {
+    name: "Ayden Sowers",
+    title: "Education Director",
+    details: "",
+    socials: {
+      email: "mailto:aqs002@SHSU.EDU",
+      linkedin: "",
+      github: "",
+    },
   },
 ];
 
 export default function OfficersPage() {
   return (
     <div>
-      <h1 className="text-3xl font-bold text-center mb-6">Our Officers</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <h1 className="text-3xl font-bold text-center mb-8 tracking-wide">
+        <span className="border-b-4 border-red-500 pb-1">Officers</span>
+      </h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {officers.map((officer) => (
-          <OfficerCard
-            key={officer.name}
-            name={officer.name}
-            title={officer.title}
-            imageUrl={officer.imageUrl}
-          />
+          <OfficerCard key={officer.name} officer={officer} />
         ))}
       </div>
     </div>
