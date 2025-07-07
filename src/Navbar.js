@@ -12,7 +12,7 @@ const Navbar = () => {
         >
           <Image
             src="/bash-logo-nobg.png"
-            alt="BASH Logo"
+            alt=""
             width={100}
             height={20}
             className="rounded-lg"

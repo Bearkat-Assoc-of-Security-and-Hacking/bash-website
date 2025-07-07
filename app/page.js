@@ -1,11 +1,114 @@
-export default function Home() {
+// app/page.js
+import Link from "next/link";
+import Image from "next/image";
+import { FiArrowRight, FiCalendar, FiClock, FiMapPin } from "react-icons/fi";
+import { getNextMeeting } from "../lib/googleCalendar";
+
+export default async function HomePage() {
+  const nextMeeting = await getNextMeeting();
+
   return (
-    <div className="text-center">
-      <h1 className="text-4xl mask-linear-from-neutral-50 mb-4">
-        Welcome to BA$H
-      </h1>
-      <p className="text-lg"></p>
-      {/* We can add more content like a mission statement or images here */}
+    <div>
+      {/* Hero Section */}
+      <section className="text-center py-12 md:py-20">
+        <div className="flex justify-center mb-8">
+          <Image
+            src="/bash-logo-nobg.png"
+            alt=""
+            width={150}
+            height={150}
+            className="animation-float"
+            priority
+          />
+        </div>
+        <h1 className="text-5xl font-extrabold mb-4">
+          Explore. Learn. Secure.
+        </h1>
+        <p className="text-xl text-gray-400 mb-8 max-w-3xl mx-auto">
+          Bearkat Association of Security and Hacking (BASH) is dedicated to
+          fostering the next generation of cybersecurity professionals. We
+          provide a hands-on, collaborative environment for students of all
+          skill levels to learn through projects, ethical hacking, and
+          competitions.
+        </p>
+        <Link
+          href="/schedule"
+          className="bg-blue-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-600 transition-transform transform hover:scale-105 inline-block"
+        >
+          View Full Schedule
+        </Link>
+      </section>
+
+      {/* Dynamic Next Meeting Section */}
+      <section className="py-16">
+        <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-lg p-8 max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl font-bold mb-4">Next Meeting</h2>
+          {nextMeeting ? (
+            <div>
+              <div className="flex flex-col md:flex-row justify-center items-center gap-x-6 gap-y-4 text-lg text-gray-300">
+                <span className="flex items-center">
+                  <FiCalendar className="mr-2 text-blue-400" />{" "}
+                  {nextMeeting.start}
+                </span>
+                {nextMeeting.location && (
+                  <span className="flex items-center">
+                    <FiMapPin className="mr-2 text-blue-400" />{" "}
+                    {nextMeeting.location}
+                  </span>
+                )}
+              </div>
+              <p className="mt-4 text-xl">Topic: {nextMeeting.summary}</p>
+            </div>
+          ) : (
+            <p className="text-gray-400 text-lg">
+              No upcoming meetings scheduled at the moment. Please check the
+              full calendar!
+            </p>
+          )}
+        </div>
+      </section>
+
+      {/* Get Involved Section */}
+      <section className="pb-16">
+        <h2 className="text-3xl font-bold text-center mb-8">Get Involved</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Brainstorm Needed */}
+        </div>
+      </section>
+
+      {/* --- NEW: Our Sponsors Section --- */}
+      <section className="py-16 border-t border-gray-800">
+        <h2 className="text-3xl font-bold text-center mb-8">Our Sponsors</h2>
+        <div className="flex flex-wrap justify-center items-center gap-8">
+          {/* Add our sponsor logos here. Make sure they are in the /public folder */}
+          <Image
+            src="/bash-logo-nobg.png"
+            alt=""
+            width={150}
+            height={75}
+            className="opacity-70 hover:opacity-100 transition-opacity"
+          />
+          <Image
+            src="/bash-logo-nobg.png"
+            alt=""
+            width={150}
+            height={75}
+            className="opacity-70 hover:opacity-100 transition-opacity"
+          />
+          <Image
+            src="/bash-logo-nobg.png"
+            alt=""
+            width={150}
+            height={75}
+            className="opacity-70 hover:opacity-100 transition-opacity"
+          />
+        </div>
+        <div className="text-center mt-8">
+          <Link href="/sponsors" className="text-blue-400 hover:underline">
+            Learn more about sponsorship opportunities
+          </Link>
+        </div>
+      </section>
     </div>
   );
 }
