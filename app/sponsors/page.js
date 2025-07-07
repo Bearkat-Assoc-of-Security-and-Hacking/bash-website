@@ -8,14 +8,14 @@ export default function SponsorsPage() {
         professionals, please view our sponsorship packet.
       </p>
       <a
-        href="/path/to/your/sponsorship-packet.pdf" // Put your packet in the `public` folder
+        href="/path/to/your/sponsorship-packet.pdf" // Put our sponsor packet in the `public` folder
         target="_blank"
         rel="noopener noreferrer"
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg"
       >
         Download Sponsor Packet
       </a>
-      {/* You could also add sponsor logos here */}
+      {/* We can add our sponsor logos here */}
     </div>
   );
 }

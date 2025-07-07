@@ -2,12 +2,12 @@
 
 import OfficerCard from "../../src/OfficerCard";
 
-// UPDATE THIS DATA STRUCTURE
+//OFFICER DATA STRUCTURE
 const officers = [
   {
     name: "Giovanni Martinez",
     title: "President",
-    details: "Spring 2026", // Major and Year
+    details: "Spring 2026",
     socials: {
       email: "mailto:gio.a.martinez03@gmail.com",
       linkedin: "https://www.linkedin.com/in/gio-mart/",

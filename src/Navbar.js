@@ -1,6 +1,6 @@
-// components/Navbar.js
+// src/Navbar.js
 import Link from "next/link";
-import Image from "next/image"; // Import the Next.js Image component
+import Image from "next/image";
 
 const Navbar = () => {
   return (
@@ -11,12 +11,11 @@ const Navbar = () => {
           href="/"
           className="flex items-center space-x-3 hover:opacity-80 transition-opacity"
         >
-          {/* Using the Image component for optimization */}
           <Image
             src="/bash-logo-nobg.png" // The path starts from the `public` folder
             alt="BASH Logo"
-            width={100} // Specify width
-            height={20} // Specify height
+            width={100}
+            height={20}
             className="rounded-lg"
           />
           <span className="text-3xl font-bold">

@@ -44,14 +44,14 @@ const resourceCategories = [
           "A premier destination for technology news and support, especially on security topics.",
         link: "https://www.bleepingcomputer.com/",
       },
-      // ADDED
+
       {
         name: "Google Project Zero Blog",
         description:
           "Deep technical analysis of zero-day vulnerabilities from Google's elite security research team.",
         link: "https://googleprojectzero.blogspot.com/",
       },
-      // ADDED
+
       {
         name: "Zero Day Initiative Blog",
         description:

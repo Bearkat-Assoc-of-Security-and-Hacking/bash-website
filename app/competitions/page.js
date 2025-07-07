@@ -1,14 +1,13 @@
 // app/competitions/page.js
-import CtfCard from "./CtfCard";
-import FeaturedCompetitionCard from "./FeaturedCompetitionCard"; // Import the new component
+import FeaturedCompetitionCard from "./FeaturedCompetitionCard";
+import CtfFeed from "./CtfFeed";
 
-// --- Data for your club's featured competitions ---
 const beginnerCompetitions = [
   {
     name: "NCAE Cyber Games",
     description:
       "A series of fun and challenging cybersecurity games for students at NCAE-C designated institutions.",
-    link: "https://www.caecommunity.org/initiatives/cae-cyber-games",
+    link: "https://www.ncaecybergames.org/#",
   },
   {
     name: "Hivestorm",
@@ -29,16 +28,13 @@ const advancedCompetitions = [
     name: "CPTC",
     description:
       "The Collegiate Penetration Testing Competition focuses on mimicking the activities of a real-world penetration test.",
-    link: "https://collegiatepentesting.org/",
+    link: "https://cp.tc/",
   },
 ];
 
-// This async function fetches the data from the CTFtime API
-async function getCtfs() {
+async function getInitialCtfs() {
   const url = "https://ctftime.org/api/v1/events/?limit=15";
-  const headers = {
-    "User-Agent": "BASH-Website-Project/1.0 (https://your-website-url.com)",
-  };
+  const headers = { "User-Agent": "BASH-Club-Website/1.0 (Development)" };
   try {
     const res = await fetch(url, {
       headers: headers,
@@ -56,13 +52,12 @@ async function getCtfs() {
 }
 
 export default async function CompetitionsPage() {
-  const ctfs = await getCtfs();
+  const initialCtfs = await getInitialCtfs();
 
   return (
     <div>
       <h1 className="text-3xl font-bold mb-8 text-center">Competitions</h1>
 
-      {/* --- NEW Club Competitions Section --- */}
       <div className="mb-16">
         <h2 className="text-2xl font-semibold border-b-2 border-teal-400 pb-2 mb-6">
           Beginner Competitions
@@ -85,24 +80,11 @@ export default async function CompetitionsPage() {
         </div>
       </div>
 
-      {/* --- Live CTFtime Feed Section --- */}
       <div>
         <h2 className="text-2xl font-semibold border-b-2 border-blue-400 pb-2 mb-6">
           Upcoming Events from CTFtime
         </h2>
-        {ctfs.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {ctfs.map((ctf) => (
-              <CtfCard key={ctf.id} ctf={ctf} />
-            ))}
-          </div>
-        ) : (
-          <div className="bg-gray-800 p-6 rounded-lg text-center">
-            <p className="text-gray-400">
-              Could not load CTF events at this time.
-            </p>
-          </div>
-        )}
+        <CtfFeed initialCtfs={initialCtfs} />
       </div>
     </div>
   );
