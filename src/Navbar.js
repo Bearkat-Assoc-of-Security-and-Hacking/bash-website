@@ -4,15 +4,14 @@ import Image from "next/image";
 
 const Navbar = () => {
   return (
-    <nav className="bg-gray-800 text-white p-4 shadow-md">
+    <nav className="bg-transparent backdrop-blur-lg text-white p-4 sticky top-0 z-50">
       <div className="container mx-auto flex justify-between items-center">
-        {/* Logo wrapped in a Link to go home */}
         <Link
           href="/"
           className="flex items-center space-x-3 hover:opacity-80 transition-opacity"
         >
           <Image
-            src="/bash-logo-nobg.png" // The path starts from the `public` folder
+            src="/bash-logo-nobg.png"
             alt="BASH Logo"
             width={100}
             height={20}

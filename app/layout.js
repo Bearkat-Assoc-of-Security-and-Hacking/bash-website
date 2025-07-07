@@ -8,14 +8,17 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "BASH Website",
-  description: "",
+  description: "The official website for the BASH organization.",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <div className="flex flex-col min-h-screen bg-gray-900 text-gray-100">
+      {/* adds a subtle gradient to the body */}
+      <body
+        className={`${inter.className} bg-gradient-to-b from-gray-900 to-slate-900 text-gray-100`}
+      >
+        <div className="flex flex-col min-h-screen">
           <Navbar />
           <main className="flex-grow container mx-auto p-4">{children}</main>
           <Footer />
