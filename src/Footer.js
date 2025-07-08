@@ -8,7 +8,7 @@ const Footer = () => {
     <footer className="bg-gray-800 text-white p-4 mt-8">
       <div className="container mx-auto flex justify-between items-center">
         {/* Copyright and License notice */}
-        <div className="text-sm text-gray-400 text-right">
+        <div className="text-sm text-gray-400 text-left">
           <p>Copyright © {currentYear} BASH</p>
           <a
             href="../liscense.md"

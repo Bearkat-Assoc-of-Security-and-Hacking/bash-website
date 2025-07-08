@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { FiArrowRight, FiCalendar, FiClock, FiMapPin } from "react-icons/fi";
 import { getNextMeeting } from "../lib/googleCalendar";
+import HeroLogo from "./HeroLogo";
 
 export default async function HomePage() {
   const nextMeeting = await getNextMeeting();
@@ -12,14 +13,7 @@ export default async function HomePage() {
       {/* Hero Section */}
       <section className="text-center py-12 md:py-20">
         <div className="flex justify-center mb-8">
-          <Image
-            src="/bash-logo-nobg.png"
-            alt=""
-            width={150}
-            height={150}
-            className="animation-float"
-            priority
-          />
+          <HeroLogo />
         </div>
         <h1 className="text-5xl font-extrabold mb-4">
           Explore. Learn. Secure.
