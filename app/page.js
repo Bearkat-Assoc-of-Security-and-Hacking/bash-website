@@ -8,18 +8,26 @@ export default async function HomePage() {
 
   return (
     <div>
-      {/* Hero Section */}
       <section className="text-center py-12 md:py-20">
-        <div className="flex justify-center mb-8"></div>
+        <div className="flex justify-center mb-8">
+          <Image
+            src="/bearkatpaw-nobg.png"
+            alt=""
+            width={150}
+            height={150}
+            className="animation-float"
+            priority
+          />
+        </div>
         <h1 className="text-5xl font-extrabold mb-4">
           Explore. Learn. Secure.
         </h1>
         <p className="text-xl text-gray-400 mb-8 max-w-3xl mx-auto">
-          Bearkat Association of Security and Hacking (BASH) is dedicated to
-          fostering the next generation of cybersecurity professionals. We
-          provide a hands-on, collaborative environment for students of all
-          skill levels to learn through projects, ethical hacking, and
-          competitions.
+          The Bearkat Association of Security and Hacking (BASH) at Sam Houston
+          State University empowers aspiring cybersecurity professionals and
+          enthusiasts. We offer a hands-on, collaborative environment for
+          students of all skill levels to explore projects, ethical hacking, and
+          competitive challenges.
         </p>
         <Link
           href="/schedule"
