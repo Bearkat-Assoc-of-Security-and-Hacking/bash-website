@@ -60,10 +60,12 @@ export default async function CompetitionsPage() {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-8 text-center">Competitions</h1>
+      <h1 className="text-3xl font-bold mb-8 text-center">
+        Competitions and Capture the Flags
+      </h1>
 
       <div className="mb-16">
-        <h2 className="text-2xl font-semibold border-b-2 border-teal-400 pb-2 mb-6 font-mono">
+        <h2 className="text-2xl font-semibold border-b-2 border-teal-400 pb-2 mb-6">
           Beginner Competitions
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -74,7 +76,7 @@ export default async function CompetitionsPage() {
       </div>
 
       <div className="mb-16">
-        <h2 className="text-2xl font-semibold border-b-2 border-teal-400 pb-2 mb-6 font-mono">
+        <h2 className="text-2xl font-semibold border-b-2 border-teal-400 pb-2 mb-6">
           Advanced Competitions
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -85,7 +87,7 @@ export default async function CompetitionsPage() {
       </div>
 
       <div>
-        <h2 className="text-2xl font-semibold border-b-2 border-blue-400 pb-2 mb-6 font-mono">
+        <h2 className="text-2xl font-semibold border-b-2 border-blue-400 pb-2 mb-6">
           Upcoming CTFs from CTFtime
         </h2>
         <CtfFeed initialCtfs={initialCtfs} />
