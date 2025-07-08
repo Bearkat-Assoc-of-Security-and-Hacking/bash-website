@@ -6,29 +6,33 @@ const beginnerCompetitions = [
   {
     name: "NCAE Cyber Games",
     description:
-      "A series of fun and challenging cybersecurity games for students at NCAE-C designated institutions.",
-    link: "https://www.ncaecybergames.org/#",
+      "NCAE Cyber Games is a small network defense competition for college students who have never participated in a competition before. ",
+    link: "https://ui.sandbox.ncaecybergames.org/",
+    ctaText: "Master the Sandbox",
   },
   {
     name: "Hivestorm",
     description:
-      "A collegiate-level competition designed to provide students with real-world defensive cybersecurity skills.",
+      "Hivestorm is a endpoint defense competition. Teams compete by securing provided Windows and Linux based virtual machines ",
     link: "https://www.hivestorm.org/",
+    ctaText: "Storm the Hive",
   },
 ];
 
 const advancedCompetitions = [
   {
     name: "CCDC",
-    description:
-      "The National Collegiate Cyber Defense Competition is a premier event focused on the operational aspect of managing and protecting a network.",
+    description: `Teams assume administrative and protective responsibilities for an existing
+      network - typically a small company with 50+ users, 7 to 10 servers, and common Internet services `,
     link: "https://www.nationalccdc.org/",
+    ctaText: "Mount the Defense",
   },
   {
     name: "CPTC",
-    description:
-      "The Collegiate Penetration Testing Competition focuses on mimicking the activities of a real-world penetration test.",
+    description: `The Collegiate Penetration Testing Competition focuses on mimicking the activities of a real-world pen test in 
+      a virtual enterprise enviroment`,
     link: "https://cp.tc/",
+    ctaText: "Breach the Defenses",
   },
 ];
 
@@ -59,7 +63,7 @@ export default async function CompetitionsPage() {
       <h1 className="text-3xl font-bold mb-8 text-center">Competitions</h1>
 
       <div className="mb-16">
-        <h2 className="text-2xl font-semibold border-b-2 border-teal-400 pb-2 mb-6">
+        <h2 className="text-2xl font-semibold border-b-2 border-teal-400 pb-2 mb-6 font-mono">
           Beginner Competitions
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -70,7 +74,7 @@ export default async function CompetitionsPage() {
       </div>
 
       <div className="mb-16">
-        <h2 className="text-2xl font-semibold border-b-2 border-teal-400 pb-2 mb-6">
+        <h2 className="text-2xl font-semibold border-b-2 border-teal-400 pb-2 mb-6 font-mono">
           Advanced Competitions
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -81,8 +85,8 @@ export default async function CompetitionsPage() {
       </div>
 
       <div>
-        <h2 className="text-2xl font-semibold border-b-2 border-blue-400 pb-2 mb-6">
-          Upcoming Events from CTFtime
+        <h2 className="text-2xl font-semibold border-b-2 border-blue-400 pb-2 mb-6 font-mono">
+          Upcoming CTFs from CTFtime
         </h2>
         <CtfFeed initialCtfs={initialCtfs} />
       </div>

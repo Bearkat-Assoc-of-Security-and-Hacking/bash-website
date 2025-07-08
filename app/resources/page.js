@@ -6,25 +6,25 @@ const resourceCategories = [
       {
         name: "Hack The Box",
         description:
-          "An online platform to test and advance your skills in penetration testing and cybersecurity.",
+          "An advanced online platform to test and advance your skills in penetration testing and cybersecurity.",
         link: "https://www.hackthebox.com/",
       },
       {
         name: "TryHackMe",
         description:
-          "A hands-on learning platform that makes learning cybersecurity fun and interactive.",
+          "A beginner learning platform that makes learning cybersecurity fun and interactive.",
         link: "https://tryhackme.com/",
       },
       {
         name: "PWN College",
         description:
-          "An education platform for students to learn cybersecurity from Arizona State University.",
+          "An excellent platform for students to learn all around computer and cyber skills",
         link: "https://pwn.college/",
       },
       {
         name: "VulnHub",
         description:
-          "Provides materials that allow anyone to gain practical hands-on experience with digital security.",
+          "Provides downloadable vulnerable virtual machines to practice pen testing",
         link: "https://www.vulnhub.com/",
       },
     ],
@@ -35,7 +35,7 @@ const resourceCategories = [
       {
         name: "The Hacker News",
         description:
-          "A leading source for the latest hacking, cybersecurity, and technology news.",
+          "A leading source for the latest cybersecurity and technology news.",
         link: "https://thehackernews.com/",
       },
       {
