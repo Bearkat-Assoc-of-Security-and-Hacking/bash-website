@@ -61,7 +61,7 @@ export default async function CompetitionsPage() {
   return (
     <div>
       <h1 className="text-3xl font-bold mb-8 text-center">
-        Competitions and Capture the Flags
+        Competitions and CTFs
       </h1>
 
       <div className="mb-16">
