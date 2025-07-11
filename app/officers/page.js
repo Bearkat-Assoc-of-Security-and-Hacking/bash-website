@@ -2,7 +2,7 @@
 
 import OfficerCard from "../../src/OfficerCard";
 
-//OFFICER DATA STRUCTURE
+//OFFICER DATA  STRUCTURE
 const officers = [
   {
     name: "Giovanni Martinez",
