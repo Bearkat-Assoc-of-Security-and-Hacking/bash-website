@@ -1,9 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import {
-  FiArrowRight,
   FiCalendar,
-  FiClock,
+  FiTerminal,
   FiMapPin,
   FiUsers,
   FiCode,
@@ -28,10 +27,10 @@ export default async function HomePage() {
         "Learn the tools and techniques used to test and secure systems, all within a responsible and ethical framework.",
     },
     {
-      icon: <FiCode size={32} className="text-blue-400 mb-4" />,
-      title: "Secure Coding",
+      icon: <FiTerminal size={32} className="text-blue-400 mb-4" />,
+      title: "Pentesting & Scripting",
       description:
-        "Dive into best practices for writing code that is resilient to common vulnerabilities and cyber threats.",
+        "Prepare for cybersecurity competitions by writing scripts to automate tasks like identifying and exploiting vulnerabilities in target systems.",
     },
     {
       icon: <FiServer size={32} className="text-blue-400 mb-4" />,
@@ -41,9 +40,9 @@ export default async function HomePage() {
     },
     {
       icon: <FiTarget size={32} className="text-blue-400 mb-4" />,
-      title: "Capture The Flag (CTF)",
+      title: "Capturing The Flag",
       description:
-        "Engage in fun and challenging competitions to test your hacking skills in a safe, legal environment.",
+        "Engage in fun and challenging CTF competitions to test your hacking skills in a safe, legal environment.",
     },
   ];
 
