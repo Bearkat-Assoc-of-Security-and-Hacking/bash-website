@@ -1,10 +1,51 @@
 import Link from "next/link";
 import Image from "next/image";
-import { FiArrowRight, FiCalendar, FiClock, FiMapPin } from "react-icons/fi";
+import {
+  FiArrowRight,
+  FiCalendar,
+  FiClock,
+  FiMapPin,
+  FiUsers,
+  FiCode,
+  FiShield,
+  FiServer,
+  FiTarget,
+  FiMic,
+} from "react-icons/fi";
+import { FaDiscord } from "react-icons/fa";
 import { getNextMeeting } from "../lib/googleCalendar";
 
 export default async function HomePage() {
   const nextMeeting = await getNextMeeting();
+
+  // Array of topics for the "Topics We Cover" section.
+  // This makes it easy to add or update topics in the future.
+  const topics = [
+    {
+      icon: <FiShield size={32} className="text-blue-400 mb-4" />,
+      title: "Ethical Hacking",
+      description:
+        "Learn the tools and techniques used to test and secure systems, all within a responsible and ethical framework.",
+    },
+    {
+      icon: <FiCode size={32} className="text-blue-400 mb-4" />,
+      title: "Secure Coding",
+      description:
+        "Dive into best practices for writing code that is resilient to common vulnerabilities and cyber threats.",
+    },
+    {
+      icon: <FiServer size={32} className="text-blue-400 mb-4" />,
+      title: "Network Security",
+      description:
+        "Explore the fundamentals of securing networks, from firewalls to intrusion detection systems.",
+    },
+    {
+      icon: <FiTarget size={32} className="text-blue-400 mb-4" />,
+      title: "Capture The Flag (CTF)",
+      description:
+        "Engage in fun and challenging competitions to test your hacking skills in a safe, legal environment.",
+    },
+  ];
 
   return (
     <div>
@@ -12,7 +53,7 @@ export default async function HomePage() {
         <div className="flex justify-center mb-8">
           <Image
             src="/bearkatpaw-nobg.png"
-            alt=""
+            alt="Bearkat Paw Logo"
             width={150}
             height={150}
             className="animation-float"
@@ -26,7 +67,7 @@ export default async function HomePage() {
           The Bearkat Association of Security and Hacking (BASH) at Sam Houston
           State University empowers aspiring cybersecurity professionals and
           enthusiasts to go beyond academia. We offer a hands-on, collaborative
-          environment for students of all skill levels to collabrate on
+          environment for students of all skill levels to collaborate on
           projects, ethical hacking, and competitive challenges.
         </p>
         <Link
@@ -37,7 +78,7 @@ export default async function HomePage() {
         </Link>
       </section>
 
-      {/* Dynamic Next Meeting Section */}
+      {/* --- Next Meeting Section --- */}
       <section className="py-16">
         <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-lg p-8 max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-4">Next Meeting</h2>
@@ -66,47 +107,115 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Get Involved Section */}
-      <section className="pb-16">
-        <h2 className="text-3xl font-bold text-center mb-8">Get Involved</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Brainstorm Needed */}
+      {/* --- NEW: Topics We Cover Section --- */}
+      <section className="py-16">
+        <h2 className="text-3xl font-bold text-center mb-12">
+          Topics We Cover
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+          {topics.map((topic, index) => (
+            <div
+              key={index}
+              className="bg-gray-800/40 p-6 rounded-lg text-center border border-gray-700 hover:border-blue-500 transition-all transform hover:-translate-y-2"
+            >
+              {topic.icon}
+              <h3 className="text-xl font-bold mb-2">{topic.title}</h3>
+              <p className="text-gray-400">{topic.description}</p>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* --- NEW: Our Sponsors Section --- */}
+      {/* --- UPDATED: Get Involved Section --- */}
+      <section className="pb-16">
+        <h2 className="text-3xl font-bold text-center mb-12">Get Involved</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          {/* Card 1: Join Discord */}
+          <div className="bg-gray-800/40 p-6 rounded-lg text-center border border-gray-700 flex flex-col items-center">
+            <FaDiscord size={32} className="text-blue-400 mb-4" />
+            <h3 className="text-xl font-bold mb-2">Join Our Discord</h3>
+            <p className="text-gray-400 mb-4 flex-grow">
+              Connect with members, ask questions, and stay up-to-date with the
+              latest announcements.
+            </p>
+            <Link
+              href="https://discord.gg/ZwfEaB7e"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-auto bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors"
+            >
+              Join Now
+            </Link>
+          </div>
+
+          {/* Card 2: Attend a Meeting */}
+          <div className="bg-gray-800/40 p-6 rounded-lg text-center border border-gray-700 flex flex-col items-center">
+            <FiUsers size={32} className="text-blue-400 mb-4" />
+            <h3 className="text-xl font-bold mb-2">Attend a Meeting</h3>
+            <p className="text-gray-400 mb-4 flex-grow">
+              We welcome everyone, regardless of skill level. Come learn with us
+              in a friendly environment.
+            </p>
+            <Link
+              href="/schedule"
+              className="mt-auto bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors"
+            >
+              View Schedule
+            </Link>
+          </div>
+
+          {/* Card 3: Speak at BASH */}
+          <div className="bg-gray-800/40 p-6 rounded-lg text-center border border-gray-700 flex flex-col items-center">
+            <FiMic size={32} className="text-blue-400 mb-4" />
+            <h3 className="text-xl font-bold mb-2">Speak at BASH</h3>
+            <p className="text-gray-400 mb-4 flex-grow">
+              Have an idea for a talk or workshop? We are always looking for
+              professionals to share their knowledge.
+            </p>
+            <Link
+              href="/sponsors#speak" // <-- Suggest creating a contact or proposal page
+              className="mt-auto bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors"
+            >
+              Propose a Talk
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/*Our Sponsors Home Page Section
       <section className="py-16 border-t border-gray-800">
         <h2 className="text-3xl font-bold text-center mb-8">Our Sponsors</h2>
         <div className="flex flex-wrap justify-center items-center gap-8">
-          {/* Add our sponsor logos here. Make sure they are in the /public folder */}
           <Image
             src="/bash-logo-nobg.png"
-            alt=""
+            alt="Sponsor Logo 1"
             width={150}
             height={75}
             className="opacity-70 hover:opacity-100 transition-opacity"
           />
           <Image
             src="/bash-logo-nobg.png"
-            alt=""
+            alt="Sponsor Logo 2"
             width={150}
             height={75}
             className="opacity-70 hover:opacity-100 transition-opacity"
           />
           <Image
             src="/bash-logo-nobg.png"
-            alt=""
+            alt="Sponsor Logo 3"
             width={150}
             height={75}
             className="opacity-70 hover:opacity-100 transition-opacity"
           />
         </div>
+        
         <div className="text-center mt-8">
           <Link href="/sponsors" className="text-blue-400 hover:underline">
             Learn more about sponsorship opportunities
           </Link>
         </div>
       </section>
+      */}
     </div>
   );
 }
