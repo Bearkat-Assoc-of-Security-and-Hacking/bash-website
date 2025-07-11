@@ -1,6 +1,4 @@
 // src/Footer.js
-import Link from "next/link";
-import Image from "next/image";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
