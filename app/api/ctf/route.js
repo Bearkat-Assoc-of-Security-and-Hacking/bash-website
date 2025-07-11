@@ -1,5 +1,6 @@
 // app/api/ctf/route.js
 import { NextResponse } from "next/server";
+export const runtime = "edge";
 
 export async function GET() {
   const url = "https://ctftime.org/api/v1/events/?limit=15";
