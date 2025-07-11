@@ -1,11 +1,3 @@
-You're absolutely right\! Having the context of your project's purpose, tech stack, and file structure is perfect for crafting a much better `README.md`. A good README acts as the front door to your project – it helps new contributors, club members, or even future you understand what the project is, how to set it up, and how to contribute.
-
-The current README is the default one from `create-next-app`, which is generic. Let's make it specific to the BASH website\!
-
-Here's a proposal for a comprehensive and improved `README.md` for your BASH website project, incorporating all the details you've shared:
-
----
-
 # Bearkat Association of Security and Hacking (BASH) Official Website
 
 The official website for the Sam Houston State University Bearkat Association of Security and Hacking (BASH) club. This platform serves as a central hub for club information, upcoming meetings, CTF competitions, resources, and more.
