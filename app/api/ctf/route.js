@@ -5,8 +5,7 @@ import { NextResponse } from "next/server";
 export async function GET() {
   const url = "https://ctftime.org/api/v1/events/?limit=15";
   const headers = {
-    "User-Agent":
-      "BASH-Club-Website/1.0 (Development replace with vercel url when ready to push to prod)",
+    "User-Agent": "BASH-WEBSITEv1.0 bashcyberclub.org",
   };
 
   try {
