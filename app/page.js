@@ -5,7 +5,6 @@ import {
   FiTerminal,
   FiMapPin,
   FiUsers,
-  FiCode,
   FiShield,
   FiServer,
   FiTarget,
@@ -106,7 +105,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* --- NEW: Topics We Cover Section --- */}
+      {/* --- Topics We Cover Section --- */}
       <section className="py-16">
         <h2 className="text-3xl font-bold text-center mb-12">
           Topics We Cover
@@ -125,7 +124,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* --- UPDATED: Get Involved Section --- */}
+      {/* --- Get Involved Section --- */}
       <section className="pb-16">
         <h2 className="text-3xl font-bold text-center mb-12">Get Involved</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
@@ -172,7 +171,7 @@ export default async function HomePage() {
               professionals to share their knowledge.
             </p>
             <Link
-              href="/sponsors#speak" // <-- Suggest creating a contact or proposal page
+              href="/sponsors#speak"
               className="mt-auto bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors"
             >
               Propose a Talk
@@ -180,41 +179,6 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
-
-      {/*Our Sponsors Home Page Section
-      <section className="py-16 border-t border-gray-800">
-        <h2 className="text-3xl font-bold text-center mb-8">Our Sponsors</h2>
-        <div className="flex flex-wrap justify-center items-center gap-8">
-          <Image
-            src="/bash-logo-nobg.png"
-            alt="Sponsor Logo 1"
-            width={150}
-            height={75}
-            className="opacity-70 hover:opacity-100 transition-opacity"
-          />
-          <Image
-            src="/bash-logo-nobg.png"
-            alt="Sponsor Logo 2"
-            width={150}
-            height={75}
-            className="opacity-70 hover:opacity-100 transition-opacity"
-          />
-          <Image
-            src="/bash-logo-nobg.png"
-            alt="Sponsor Logo 3"
-            width={150}
-            height={75}
-            className="opacity-70 hover:opacity-100 transition-opacity"
-          />
-        </div>
-        
-        <div className="text-center mt-8">
-          <Link href="/sponsors" className="text-blue-400 hover:underline">
-            Learn more about sponsorship opportunities
-          </Link>
-        </div>
-      </section>
-      */}
     </div>
   );
 }
