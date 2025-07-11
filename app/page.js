@@ -25,9 +25,9 @@ export default async function HomePage() {
         <p className="text-xl text-gray-400 mb-8 max-w-3xl mx-auto">
           The Bearkat Association of Security and Hacking (BASH) at Sam Houston
           State University empowers aspiring cybersecurity professionals and
-          enthusiasts. We offer a hands-on, collaborative environment for
-          students of all skill levels to explore projects, ethical hacking, and
-          competitive challenges.
+          enthusiasts to go beyond academia. We offer a hands-on, collaborative
+          environment for students of all skill levels to collabrate on
+          projects, ethical hacking, and competitive challenges.
         </p>
         <Link
           href="/schedule"

@@ -18,6 +18,22 @@ const beginnerCompetitions = [
     ctaText: "Storm the Hive",
   },
 ];
+const IntermediateCompetitions = [
+  {
+    name: "DoE CyberForce",
+    description:
+      "Competition scenarios have an energy focus. Previous scenarios have focused on power distributors, water infrastructure and power delivery systems.",
+    link: "https://cyberforce.energy.gov/cyberforce-competition/",
+    ctaText: "Protect the Grid",
+  },
+  {
+    name: "PicoCTF",
+    description:
+      "Challenges are more programming focused and they increase in difficulty as players progress. ",
+    link: "https://picoctf.org/",
+    ctaText: "Crack the Code",
+  },
+];
 
 const advancedCompetitions = [
   {
@@ -70,6 +86,17 @@ export default async function CompetitionsPage() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {beginnerCompetitions.map((comp) => (
+            <FeaturedCompetitionCard key={comp.name} competition={comp} />
+          ))}
+        </div>
+      </div>
+
+      <div className="mb-16">
+        <h2 className="text-2xl font-semibold border-b-2 border-teal-400 pb-2 mb-6">
+          Intermediate Competitions
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {IntermediateCompetitions.map((comp) => (
             <FeaturedCompetitionCard key={comp.name} competition={comp} />
           ))}
         </div>
