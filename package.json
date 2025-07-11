@@ -1,6 +1,7 @@
 {
   "name": "bash-website",
   "version": "0.1.0",
+  "author": "Bruce Mikel bmikel2001@proton.me",
   "private": true,
   "scripts": {
     "dev": "next dev",
