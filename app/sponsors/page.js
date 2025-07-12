@@ -48,7 +48,7 @@ export default function SponsorsPage() {
           packet for more details.
         </p>
         <a
-          href="/bash-sponsor-packet.pdf" // Ensure our packet is in the `public` folder
+          href="/sponsor.pdf" // Ensure our packet is in the `public` folder
           target="_blank"
           rel="noopener noreferrer"
           className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg inline-flex items-center transition-transform transform hover:scale-105"
