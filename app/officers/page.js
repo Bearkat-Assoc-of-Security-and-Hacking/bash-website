@@ -30,7 +30,7 @@ const officers = [
     details: "",
     socials: {
       email: "mailto:LIB_KAB@SHSU.EDU",
-      linkedin: "",
+      linkedin: "https://www.linkedin.com/in/kirk-burns-cissp-4a629115/",
       github: "",
     },
   },
