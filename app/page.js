@@ -39,7 +39,7 @@ export default async function HomePage() {
     },
     {
       icon: <FiTarget size={32} className="text-blue-400 mb-4" />,
-      title: "Capturing The Flag",
+      title: "Capture The Flag",
       description:
         "Engage in fun and challenging CTF competitions to test your hacking skills in a safe, legal environment.",
     },

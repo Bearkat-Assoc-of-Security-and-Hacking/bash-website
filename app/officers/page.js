@@ -7,7 +7,7 @@ const officers = [
   {
     name: "Giovanni Martinez",
     title: "President",
-    details: "Spring 2026",
+    details: "",
     socials: {
       email: "mailto:gio.a.martinez03@gmail.com",
       linkedin: "https://www.linkedin.com/in/gio-mart/",
@@ -17,7 +17,7 @@ const officers = [
   {
     name: "Bruce Mikel",
     title: "Vice President",
-    details: "Spring 2026",
+    details: "",
     socials: {
       email: "mailto:mikelbruce230@gmail.com",
       linkedin: "https://www.linkedin.com/in/bruce-mikel-7b373721b/",
@@ -30,7 +30,7 @@ const officers = [
     details: "",
     socials: {
       email: "mailto:LIB_KAB@SHSU.EDU",
-      linkedin: "",
+      linkedin: "https://www.linkedin.com/in/kirk-burns-cissp-4a629115/",
       github: "",
     },
   },
