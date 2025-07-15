@@ -47,13 +47,13 @@ export default async function HomePage() {
 
   return (
     <div>
-      <section className="text-center py-12 md:py-20">
+      <section className="text-center pt-0 pb-0">
         <div className="flex justify-center mb-8">
           <Image
             src="/bearkatpaw-nobg.png"
             alt="Bearkat Paw Logo"
-            width={150}
-            height={150}
+            width={300}
+            height={300}
             className="animation-float"
             priority
           />
