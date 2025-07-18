@@ -61,7 +61,7 @@ export default async function HomePage() {
         <h1 className="text-5xl font-extrabold mb-4">
           Explore. Learn. Secure.
         </h1>
-        <p className="text-xl text-gray-400 mb-8 max-w-3xl mx-auto">
+        <p className="text-xl text-gray-400 mb-8 max-w-3xl xl:max-w-4xl mx-auto">
           The Bearkat Association of Security and Hacking (BASH) at Sam Houston
           State University empowers aspiring cybersecurity professionals and
           enthusiasts to go beyond academia. We offer a hands-on, collaborative
@@ -78,7 +78,7 @@ export default async function HomePage() {
 
       {/* --- Next Meeting Section --- */}
       <section className="py-16">
-        <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-lg p-8 max-w-4xl mx-auto text-center">
+        <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-lg p-8 max-w-4xl xl:max-w-5xl 3xl:max-w-6xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-4">Next Meeting</h2>
           {nextMeeting ? (
             <div>
@@ -110,7 +110,7 @@ export default async function HomePage() {
         <h2 className="text-3xl font-bold text-center mb-12">
           Topics We Cover
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl 2xl:max-w-8xl 4xl:max-w-10xl mx-auto">
           {topics.map((topic, index) => (
             <div
               key={index}
@@ -127,7 +127,7 @@ export default async function HomePage() {
       {/* --- Get Involved Section --- */}
       <section className="pb-16">
         <h2 className="text-3xl font-bold text-center mb-12">Get Involved</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl 2xl:max-w-8xl 4xl:max-w-10xl mx-auto">
           {/* Card 1: Join Discord */}
           <div className="bg-gray-800/40 p-6 rounded-lg text-center border border-gray-700 flex flex-col items-center">
             <FaDiscord size={32} className="text-blue-400 mb-4" />
