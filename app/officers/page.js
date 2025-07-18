@@ -25,22 +25,12 @@ const officers = [
     },
   },
   {
-    name: "Kirk Burns",
-    title: "Faculty Advisor",
-    details: "",
-    socials: {
-      email: "mailto:LIB_KAB@SHSU.EDU",
-      linkedin: "https://www.linkedin.com/in/kirk-burns-cissp-4a629115/",
-      github: "",
-    },
-  },
-  {
     name: "Mason Murphy",
     title: "Competition Director",
     details: "",
     socials: {
       email: "mailto:mason.r.murphy@shsu.edu",
-      linkedin: "",
+      linkedin: "https://www.linkedin.com/in/mason-ray-murphy/",
       github: "",
     },
   },
@@ -60,25 +50,113 @@ const officers = [
     details: "",
     socials: {
       email: "mailto:cmc233@SHSU.EDU",
-      linkedin: "",
+      linkedin: "https://www.linkedin.com/in/chase-cooper-9491b7308/",
       github: "",
+    },
+  },
+];
+
+const advisor = [
+  {
+    name: "Kirk Burns",
+    title: "Off-campus Advisor",
+    details: "CISO at Texas Higer Ed Board",
+    socials: {
+      email: "mailto:LIB_KAB@SHSU.EDU",
+      linkedin: "https://www.linkedin.com/in/kirk-burns-cissp-4a629115/",
+    },
+  },
+  {
+    name: "Dustin Thornton",
+    title: "On-campus Advisor",
+    details: "SOC Manager ",
+    socials: {
+      email: "mailto:dustin.thornton@shsu.edu",
+      linkedin: "https://www.linkedin.com/in/dustin-c-thornton/",
+    },
+  },
+];
+
+const alumni = [
+  {
+    name: "Josh Robison",
+    title: "Former President",
+    details: "IT Director at RDI Mechanical",
+    socials: {
+      linkedin: "https://www.linkedin.com/in/josh-robison-b3aab9255/",
+    },
+  },
+  {
+    name: "Quentin Burns",
+    title: "Past Education Director",
+    details: "SHSU SOC Alumni and aspiring Network Engineer",
+    socials: {
+      linkedin: "https://www.linkedin.com/in/burnsquentin/",
+    },
+  },
+  {
+    name: "Richard Olivarri",
+    title: "Former CTF Director",
+    details:
+      "Security Researcher, blogger and aspiring web app security professional",
+    socials: {
+      linkedin: "https://www.linkedin.com/in/richard-olivarri/",
+      github: "https://anonode.github.io/",
+    },
+  },
+  {
+    name: "James Robbins",
+    title: "SHSU Comp-sci Graduate",
+    details: "Software Engineer at LDARTools",
+    socials: {
+      linkedin: "https://www.linkedin.com/in/james-robbins-44b731219/",
     },
   },
 ];
 
 export default function OfficersPage() {
   return (
-    <div>
-      <h1 className="text-3xl font-bold text-center mb-8 tracking-wide">
-        <span className="border-b-4 border-red-500 pb-1">
-          2025-2026 Officers
-        </span>
-      </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {officers.map((officer) => (
-          <OfficerCard key={officer.name} officer={officer} />
-        ))}
+    <>
+      <div>
+        <h1 className="text-3xl font-bold text-center mb-8 tracking-wide">
+          <span className="border-b-4 border-red-500 pb-1">
+            2025-2026 Officers
+          </span>
+        </h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {officers.map((officer) => (
+            <OfficerCard key={officer.name} officer={officer} />
+          ))}
+        </div>
       </div>
-    </div>
+
+      {/* Advisor Section */}
+      <div className="mt-16">
+        {" "}
+        {/* mt-16 adds space between the two sections */}
+        <h2 className="text-3xl font-bold text-center mb-8 tracking-wide">
+          <span className="border-b-4 border-red-500 pb-1">Advisors</span>
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {advisor.map((person) => (
+            <OfficerCard key={person.name} officer={person} />
+          ))}
+        </div>
+      </div>
+
+      {/* Alumni Section */}
+      <div className="mt-16">
+        {" "}
+        {/* mt-16 adds space between the two sections */}
+        <h2 className="text-3xl font-bold text-center mb-8 tracking-wide">
+          <span className="border-b-4 border-red-500 pb-1">Alumni</span>
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {alumni.map((alumni) => (
+            <OfficerCard key={alumni.name} officer={alumni} />
+          ))}
+        </div>
+      </div>
+    </>
   );
 }
