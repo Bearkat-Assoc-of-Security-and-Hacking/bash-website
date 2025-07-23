@@ -48,7 +48,7 @@ This website aims to be the go-to resource for current and prospective members, 
   - [Google Calendar API](https://developers.google.com/calendar/api) for meeting schedules.
 - **Icons:** [React Icons](https://react-icons.github.io/react-icons/)
 - **Font Optimization:** [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) (using Inter font)
-- **Hosting:** Vercel (recommended)
+- **Hosting:** Cloudflare Pages
 
 ## Project Structure
 
