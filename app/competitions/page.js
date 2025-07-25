@@ -53,7 +53,9 @@ const advancedCompetitions = [
 ];
 
 async function getInitialCtfs() {
-  const url = "https://ctftime.org/api/v1/events/?limit=15";
+  const now = Math.floor(Date.now() / 1000); // Current Unix timestamp
+  const oneMonthLater = now + 30 * 24 * 3600; // 30 days ahead; adjust as needed
+  const url = `https://ctftime.org/api/v1/events/?limit=15&start=${now}&finish=${oneMonthLater}`;
   const headers = { "User-Agent": "BASH-Club-Website/1.0 (Development)" };
   try {
     const res = await fetch(url, {
