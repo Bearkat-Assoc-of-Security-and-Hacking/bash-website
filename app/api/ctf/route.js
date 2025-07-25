@@ -3,7 +3,9 @@ export const runtime = "edge";
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  const url = "https://ctftime.org/api/v1/events/?limit=15";
+  const now = Math.floor(Date.now() / 1000); // Current Unix timestamp
+  const oneMonthLater = now + 30 * 24 * 3600; // 30 days ahead; adjust as needed
+  const url = `https://ctftime.org/api/v1/events/?limit=15&start=${now}&finish=${oneMonthLater}`;
   const headers = {
     "User-Agent": "BASH-WEBSITEv1.0 bashcyberclub.org",
   };
