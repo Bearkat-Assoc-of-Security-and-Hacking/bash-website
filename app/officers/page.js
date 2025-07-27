@@ -97,8 +97,7 @@ const alumni = [
   {
     name: "Richard Olivarri",
     title: "Former CTF Director",
-    details:
-      "Security Researcher, blogger and aspiring web app security professional",
+    details: "Incident Response Professional at Crowe",
     socials: {
       linkedin: "https://www.linkedin.com/in/richard-olivarri/",
       github: "https://anonode.github.io/",
