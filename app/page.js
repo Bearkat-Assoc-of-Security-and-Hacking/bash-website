@@ -12,6 +12,7 @@ import {
 } from "react-icons/fi";
 import { FaDiscord } from "react-icons/fa";
 import { getNextMeeting } from "../lib/googleCalendar";
+import FcmSignup from "@/src/FcmSignup";
 
 export default async function HomePage() {
   const nextMeeting = await getNextMeeting();
@@ -178,6 +179,11 @@ export default async function HomePage() {
             </Link>
           </div>
         </div>
+        <section className="py-16">
+          <div className="max-w-md mx-auto">
+            <FcmSignup />
+          </div>
+        </section>
       </section>
     </div>
   );
