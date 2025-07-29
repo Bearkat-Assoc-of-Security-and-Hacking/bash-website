@@ -1,82 +1,63 @@
-// src/FcmSignup.js
 "use client";
 
 import { useState, useEffect } from "react";
 import { getToken } from "firebase/messaging";
+// Assuming getFcmMessaging initializes and returns the messaging instance
 import { getFcmMessaging } from "./firebase";
 
 const FcmSignup = () => {
-  const [message, setMessage] = useState("");
+  // Correctly initialize state as an object
+  const [feedback, setFeedback] = useState({ text: "", type: "" });
   const [loading, setLoading] = useState(false);
 
-  // Register service worker on component mount
-  useEffect(() => {
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker
-        .register("/firebase-messaging-sw.js")
-        .then((registration) => {
-          console.log(
-            "Service Worker registered with scope:",
-            registration.scope
-          );
-        })
-        .catch((err) => {
-          console.error("Service Worker registration failed:", err);
-        });
-    } else {
-      console.warn("Service workers are not supported in this browser.");
-    }
-  }, []); // Empty array: Runs once on load
+  // Your useEffect for registering the service worker is fine.
 
   const handleSignup = async () => {
     setLoading(true);
-    setMessage("");
+    setFeedback({ text: "", type: "" }); // Clear previous feedback
     try {
       const messaging = await getFcmMessaging();
       if (!messaging)
-        throw new Error(
-          "Notifications not supported in your browser. Please try a modern browser like Chrome or Firefox."
-        );
+        throw new Error("Notifications not supported in this browser.");
 
       const permission = await Notification.requestPermission();
       if (permission === "denied")
-        throw new Error(
-          "Notification permission denied. You can enable it in your browser settings."
-        );
-      if (permission !== "granted")
-        throw new Error("Permission not granted. Please try again.");
+        throw new Error("Notification permission denied.");
+      if (permission !== "granted") throw new Error("Permission not granted.");
 
       const token = await getToken(messaging, {
         vapidKey: process.env.NEXT_PUBLIC_FCM_VAPID_KEY,
       });
-      if (!token)
-        throw new Error(
-          "Failed to generate token. Check your internet connection or browser permissions."
-        );
+      if (!token) throw new Error("Failed to generate token.");
 
       const res = await fetch("/api/signup-fcm", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token }),
       });
+
       if (!res.ok) {
-        const errorText = await res.text();
-        throw new Error(`Signup failed: ${errorText}`);
+        // This part is good, it helps debug the 500 error
+        const errorData = await res.json();
+        throw new Error(errorData.error || "Server responded with an error.");
       }
 
-      setMessage(
-        "Signed up successfully! You'll now receive push notifications."
-      );
+      // Update state using the correct object structure
+      setFeedback({
+        text: "Signed up successfully! You'll now receive push notifications.",
+        type: "success",
+      });
     } catch (err) {
       console.error("Signup error:", err);
-      setMessage(`Error: ${err.message}`);
+      // Update state using the correct object structure
+      setFeedback({ text: `Error: ${err.message}`, type: "error" });
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+    <div className="bg-gray-800/40 p-8 rounded-lg border border-gray-700 text-center">
       <h3 className="text-xl font-bold mb-4 text-white">
         Sign Up for Push Announcements
       </h3>
@@ -86,11 +67,21 @@ const FcmSignup = () => {
       <button
         onClick={handleSignup}
         disabled={loading}
-        className="bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors"
+        className="bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors disabled:bg-gray-500"
       >
         {loading ? "Signing Up..." : "Enable Notifications"}
       </button>
-      {message && <p className="mt-4 text-gray-300">{message}</p>}
+
+      {/* This now correctly references the 'feedback' state */}
+      {feedback.text && (
+        <p
+          className={`mt-4 font-semibold ${
+            feedback.type === "success" ? "text-green-400" : "text-red-400"
+          }`}
+        >
+          {feedback.text}
+        </p>
+      )}
     </div>
   );
 };
