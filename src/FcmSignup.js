@@ -1,65 +1,99 @@
+// /app/fcmSignup.js
 "use client";
-
 import { useState, useEffect } from "react";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getToken } from "firebase/messaging";
-// Assuming getFcmMessaging initializes and returns the messaging instance
-import { getFcmMessaging } from "./firebase";
+import { app, messaging } from "@/lib/firebase";
 
-const FcmSignup = () => {
-  // Correctly initialize state as an object
-  const [feedback, setFeedback] = useState({ text: "", type: "" });
+export default function FcmSignup() {
+  const [authState, setAuthState] = useState({ status: "loading", user: null });
+  const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const auth = getAuth(app);
 
-  // Your useEffect for registering the service worker is fine.
+  // Listen for changes in user sign-in state
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        setAuthState({ status: "authenticated", user: currentUser });
+      } else {
+        setAuthState({ status: "unauthenticated", user: null });
+      }
+    });
+    return () => unsubscribe();
+  }, [auth]);
 
   const handleSignup = async () => {
-    setLoading(true);
-    setFeedback({ text: "", type: "" }); // Clear previous feedback
-    try {
-      const messaging = await getFcmMessaging();
-      if (!messaging)
-        throw new Error("Notifications not supported in this browser.");
+    if (authState.status !== "authenticated") {
+      setMessage("Error: You must be signed in to enable notifications.");
+      return;
+    }
 
+    setLoading(true);
+    setMessage("");
+    try {
+      const idToken = await authState.user.getIdToken();
       const permission = await Notification.requestPermission();
-      if (permission === "denied")
-        throw new Error("Notification permission denied.");
       if (permission !== "granted") throw new Error("Permission not granted.");
 
-      const token = await getToken(messaging, {
+      const fcmToken = await getToken(messaging, {
         vapidKey: process.env.NEXT_PUBLIC_FCM_VAPID_KEY,
       });
-      if (!token) throw new Error("Failed to generate token.");
+      if (!fcmToken) throw new Error("Could not get notification token.");
 
       const res = await fetch("/api/signup-fcm", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ token }),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${idToken}`,
+        },
+        body: JSON.stringify({ token: fcmToken }),
       });
 
-      if (!res.ok) {
-        // This part is good, it helps debug the 500 error
-        const errorData = await res.json();
-        throw new Error(errorData.error || "Server responded with an error.");
-      }
+      if (!res.ok) throw new Error("Server registration failed.");
 
-      // Update state using the correct object structure
-      setFeedback({
-        text: "Signed up successfully! You'll now receive push notifications.",
-        type: "success",
-      });
+      setMessage("Successfully enabled notifications!");
     } catch (err) {
-      console.error("Signup error:", err);
-      // Update state using the correct object structure
-      setFeedback({ text: `Error: ${err.message}`, type: "error" });
+      setMessage(`Error: ${err.message}`);
     } finally {
       setLoading(false);
     }
   };
 
-  return (
+  const CardShell = ({ children }) => (
     <div className="bg-gray-800/40 p-8 rounded-lg border border-gray-700 text-center">
+      {children}
+    </div>
+  );
+
+  // 1. Show a loading state initially
+  if (authState.status === "loading") {
+    return (
+      <CardShell>
+        <p className="text-gray-300">Loading member status...</p>
+      </CardShell>
+    );
+  }
+
+  // 2. If user is NOT signed in, show a message
+  if (authState.status === "unauthenticated") {
+    return (
+      <CardShell>
+        <h3 className="text-xl font-bold mb-4 text-white">
+          Member Announcements
+        </h3>
+        <p className="text-gray-300">
+          Please sign in to enable push notifications.
+        </p>
+      </CardShell>
+    );
+  }
+
+  // 3. If user IS signed in, show the button
+  return (
+    <CardShell>
       <h3 className="text-xl font-bold mb-4 text-white">
-        Sign Up for Push Announcements
+        Enable Push Announcements
       </h3>
       <p className="text-gray-300 mb-4">
         Get instant updates on club events, meetings, and more!
@@ -67,23 +101,11 @@ const FcmSignup = () => {
       <button
         onClick={handleSignup}
         disabled={loading}
-        className="bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors disabled:bg-gray-500"
+        className="bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 disabled:bg-gray-500"
       >
-        {loading ? "Signing Up..." : "Enable Notifications"}
+        {loading ? "Enabling..." : "Enable Notifications"}
       </button>
-
-      {/* This now correctly references the 'feedback' state */}
-      {feedback.text && (
-        <p
-          className={`mt-4 font-semibold ${
-            feedback.type === "success" ? "text-green-400" : "text-red-400"
-          }`}
-        >
-          {feedback.text}
-        </p>
-      )}
-    </div>
+      {message && <p className="mt-4 text-sm text-gray-300">{message}</p>}
+    </CardShell>
   );
-};
-
-export default FcmSignup;
+}

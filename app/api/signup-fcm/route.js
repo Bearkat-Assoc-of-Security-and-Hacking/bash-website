@@ -1,28 +1,56 @@
-// app/api/signup-fcm/route.js
+// /app/api/signup-fcm/route.js
 
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-import { db } from "@/lib/firebase";
+// REMOVED: The client-side imports are no longer needed here.
+import { getFirestore } from "firebase-admin/firestore";
+import { getAuth } from "firebase-admin/auth";
+import { initializeAdminApp } from "@/lib/server/firebaseAdmin";
+
+// Initialize the admin app
+initializeAdminApp();
 
 export async function POST(req) {
+  const idToken = req.headers.get("Authorization")?.split("Bearer ")[1];
+
+  if (!idToken) {
+    return new Response(JSON.stringify({ error: "Unauthorized" }), {
+      status: 401,
+    });
+  }
+
   try {
-    const { token } = await req.json();
-    if (!token) {
-      return new Response(JSON.stringify({ error: "Token required" }), {
+    const decodedToken = await getAuth().verifyIdToken(idToken);
+    const uid = decodedToken.uid;
+
+    const { token: fcmToken } = await req.json();
+    if (!fcmToken) {
+      return new Response(JSON.stringify({ error: "FCM token required" }), {
         status: 400,
       });
     }
 
-    await addDoc(collection(db, "fcm-tokens"), {
-      token,
-      signedUpAt: serverTimestamp(), // Uses Firestore's server timestamp
+    // --- THIS IS THE FIX ---
+    // Use the Admin SDK's chained syntax to get the document reference
+    const db = getFirestore();
+    const userFcmRef = db
+      .collection("users")
+      .doc(uid)
+      .collection("fcm-tokens")
+      .doc(fcmToken);
+
+    // Use the .set() method on the document reference
+    await userFcmRef.set({
+      signedUpAt: new Date(), // Using new Date() is fine on the server
     });
 
     return new Response(JSON.stringify({ success: true }), { status: 200 });
-  } catch (err) {
-    console.error("FCM Signup Error:", err);
+  } catch (error) {
+    console.error("API Error:", error);
+    // The error now correctly originates from the catch block
     return new Response(
-      JSON.stringify({ error: "An internal server error occurred." }),
-      { status: 500 }
+      JSON.stringify({
+        error: "Invalid authentication token or server error.",
+      }),
+      { status: 401 }
     );
   }
 }

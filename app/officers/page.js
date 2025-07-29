@@ -16,7 +16,7 @@ const officers = [
   },
   {
     name: "Bruce Mikel",
-    title: "Vice President",
+    title: "Vice President and Web Master",
     details: "",
     socials: {
       email: "mailto:mikelbruce230@gmail.com",

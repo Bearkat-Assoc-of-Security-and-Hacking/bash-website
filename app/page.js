@@ -1,24 +1,25 @@
+// /app/page.js
+
 import Link from "next/link";
 import Image from "next/image";
 import {
   FiCalendar,
   FiTerminal,
   FiMapPin,
-  FiUsers,
   FiShield,
   FiServer,
   FiTarget,
-  FiMic,
 } from "react-icons/fi";
-import { FaDiscord } from "react-icons/fa";
 import { getNextMeeting } from "../lib/googleCalendar";
-import FcmSignup from "@/src/FcmSignup";
+
+// Import your components
+import TopicCard from "./topicCard";
+import GetInvolved from "./getInvolved";
+import FcmSignup from "/src/fcmSignup"; // 1. Make sure this component is imported
 
 export default async function HomePage() {
   const nextMeeting = await getNextMeeting();
 
-  // Array of topics for the "Topics We Cover" section.
-  // This makes it easy to add or update topics in the future.
   const topics = [
     {
       icon: <FiShield size={32} className="text-blue-400 mb-4" />,
@@ -48,6 +49,7 @@ export default async function HomePage() {
 
   return (
     <div>
+      {/* --- Hero Section --- */}
       <section className="text-center pt-0 pb-0">
         <div className="flex justify-center mb-8">
           <Image
@@ -111,79 +113,21 @@ export default async function HomePage() {
         <h2 className="text-3xl font-bold text-center mb-12">
           Topics We Cover
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl 2xl:max-w-8xl 4xl:max-w-10xl mx-auto">
-          {topics.map((topic, index) => (
-            <div
-              key={index}
-              className="bg-gray-800/40 p-6 rounded-lg text-center border border-gray-700 hover:border-blue-500 transition-all transform hover:-translate-y-2"
-            >
-              {topic.icon}
-              <h3 className="text-xl font-bold mb-2">{topic.title}</h3>
-              <p className="text-gray-400">{topic.description}</p>
-            </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+          {topics.map((topic) => (
+            <TopicCard key={topic.title} {...topic} />
           ))}
         </div>
       </section>
 
       {/* --- Get Involved Section --- */}
+      <GetInvolved />
+
+      {/* 2. Add the FcmSignup component back here */}
       <section className="pb-16">
-        <h2 className="text-3xl font-bold text-center mb-12">Get Involved</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl 2xl:max-w-8xl 4xl:max-w-10xl mx-auto">
-          {/* Card 1: Join Discord */}
-          <div className="bg-gray-800/40 p-6 rounded-lg text-center border border-gray-700 flex flex-col items-center">
-            <FaDiscord size={32} className="text-blue-400 mb-4" />
-            <h3 className="text-xl font-bold mb-2">Join Our Discord</h3>
-            <p className="text-gray-400 mb-4 flex-grow">
-              Connect with members, ask questions, and stay up-to-date with the
-              latest announcements.
-            </p>
-            <Link
-              href="https://discord.gg/ZwfEaB7e"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-auto bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors"
-            >
-              Join Now
-            </Link>
-          </div>
-
-          {/* Card 2: Attend a Meeting */}
-          <div className="bg-gray-800/40 p-6 rounded-lg text-center border border-gray-700 flex flex-col items-center">
-            <FiUsers size={32} className="text-blue-400 mb-4" />
-            <h3 className="text-xl font-bold mb-2">Attend a Meeting</h3>
-            <p className="text-gray-400 mb-4 flex-grow">
-              We welcome everyone, regardless of skill level. Come learn with us
-              in a friendly environment.
-            </p>
-            <Link
-              href="/schedule"
-              className="mt-auto bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors"
-            >
-              View Schedule
-            </Link>
-          </div>
-
-          {/* Card 3: Speak at BASH */}
-          <div className="bg-gray-800/40 p-6 rounded-lg text-center border border-gray-700 flex flex-col items-center">
-            <FiMic size={32} className="text-blue-400 mb-4" />
-            <h3 className="text-xl font-bold mb-2">Speak at BASH</h3>
-            <p className="text-gray-400 mb-4 flex-grow">
-              Have an idea for a talk or workshop? We are always looking for
-              professionals to share their knowledge.
-            </p>
-            <Link
-              href="/sponsors#speak"
-              className="mt-auto bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors"
-            >
-              Propose a Talk
-            </Link>
-          </div>
+        <div className="max-w-md mx-auto">
+          <FcmSignup />
         </div>
-        <section className="py-16">
-          <div className="max-w-md mx-auto">
-            <FcmSignup />
-          </div>
-        </section>
       </section>
     </div>
   );

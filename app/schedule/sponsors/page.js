@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { FiDownload, FiMail } from "react-icons/fi";
 
 export default function SponsorsPage() {
