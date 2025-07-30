@@ -3,7 +3,7 @@
 
 import { useState } from "react";
 import { getAuth, sendSignInLinkToEmail } from "firebase/auth";
-import { app } from "@/lib/firebase"; // Make sure this path to your firebase config is correct
+import { app } from "@/lib/firebase";
 
 export default function EmailSignIn() {
   const [email, setEmail] = useState("");
