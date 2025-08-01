@@ -15,7 +15,6 @@ import { getNextMeeting } from "../lib/googleCalendar";
 // Import your components
 import TopicCard from "./topicCard";
 import GetInvolved from "./getInvolved";
-import FcmSignup from "/src/fcmSignup"; // 1. Make sure this component is imported
 
 export default async function HomePage() {
   const nextMeeting = await getNextMeeting();
@@ -122,13 +121,6 @@ export default async function HomePage() {
 
       {/* --- Get Involved Section --- */}
       <GetInvolved />
-
-      {/* 2. Add the FcmSignup component back here */}
-      <section className="pb-16">
-        <div className="max-w-md mx-auto">
-          <FcmSignup />
-        </div>
-      </section>
     </div>
   );
 }

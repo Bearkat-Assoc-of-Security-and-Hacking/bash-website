@@ -1,15 +1,38 @@
-// /app/getInvolved.js
+// In file /app/getInvolved.js
 "use client";
+//Imports for Firebase authentication state
+import { useState, useEffect } from "react";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { app } from "@/lib/firebase"; // Make sure this path is correct for you
 
-import { useState } from "react";
+// Our existing imports
 import { FiUsers, FiMic } from "react-icons/fi";
 import { FaDiscord, FaEnvelope } from "react-icons/fa";
-import ActionCard from "./actionCard"; // Corrected path
-import Modal from "./modal"; // Corrected path
-import EmailSignIn from "./emailSignIn"; // Corrected path
+import ActionCard from "./actionCard";
+import Modal from "./modal";
+import EmailSignIn from "./emailSignIn";
+
+//Import the component that will be shown after login
+import FcmSignup from "/src/FcmSignup.js";
 
 export default function GetInvolved() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  //State to manage the user and loading status
+  const [user, setUser] = useState(null);
+  const [authLoading, setAuthLoading] = useState(true);
+
+  //useEffect hook to listen for auth changes
+  useEffect(() => {
+    const auth = getAuth(app);
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setAuthLoading(false);
+    });
+
+    // Cleanup subscription on component unmount
+    return () => unsubscribe();
+  }, []);
 
   const actions = [
     {
@@ -45,13 +68,21 @@ export default function GetInvolved() {
           {actions.map((action) => (
             <ActionCard key={action.title} {...action} />
           ))}
-          <ActionCard
-            icon={<FaEnvelope size={32} className="text-blue-400 mb-4" />}
-            title="Member Announcements"
-            description="Sign in with your SHSU email to enable push notifications for members."
-            buttonText="Sign Up"
-            onClick={() => setIsModalOpen(true)}
-          />
+
+          {!authLoading &&
+            (user ? (
+              // If logged IN, show the FcmSignup component
+              <FcmSignup />
+            ) : (
+              // If logged OUT, show the original sign-up card
+              <ActionCard
+                icon={<FaEnvelope size={32} className="text-blue-400 mb-4" />}
+                title="Member Announcements"
+                description="Sign in with your SHSU email to enable push notifications for meeting reminders."
+                buttonText="Sign Up"
+                onClick={() => setIsModalOpen(true)}
+              />
+            ))}
         </div>
       </section>
 

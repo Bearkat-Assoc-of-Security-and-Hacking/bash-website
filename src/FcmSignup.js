@@ -1,30 +1,27 @@
-// /app/fcmSignup.js
+// In file /src/FcmSignup.js
 "use client";
-import { useState, useEffect } from "react";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useState } from "react";
+import { getAuth } from "firebase/auth";
 import { getToken } from "firebase/messaging";
 import { app, messaging } from "@/lib/firebase";
+import { FaEnvelope } from "react-icons/fa"; // 1. Add the import for the icon
+
+// 2. Add flexbox and height classes to the CardShell
+const CardShell = ({ children }) => (
+  <div className="bg-slate-800 p-6 rounded-lg border border-slate-700 text-center flex flex-col h-full">
+    {children}
+  </div>
+);
 
 export default function FcmSignup() {
-  const [authState, setAuthState] = useState({ status: "loading", user: null });
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const auth = getAuth(app);
 
-  // Listen for changes in user sign-in state
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      if (currentUser) {
-        setAuthState({ status: "authenticated", user: currentUser });
-      } else {
-        setAuthState({ status: "unauthenticated", user: null });
-      }
-    });
-    return () => unsubscribe();
-  }, [auth]);
-
   const handleSignup = async () => {
-    if (authState.status !== "authenticated") {
+    const user = auth.currentUser;
+
+    if (!user) {
       setMessage("Error: You must be signed in to enable notifications.");
       return;
     }
@@ -32,9 +29,11 @@ export default function FcmSignup() {
     setLoading(true);
     setMessage("");
     try {
-      const idToken = await authState.user.getIdToken();
+      const idToken = await user.getIdToken();
       const permission = await Notification.requestPermission();
       if (permission !== "granted") throw new Error("Permission not granted.");
+
+      if (!messaging) throw new Error("Could not get notification token.");
 
       const fcmToken = await getToken(messaging, {
         vapidKey: process.env.NEXT_PUBLIC_FCM_VAPID_KEY,
@@ -60,52 +59,30 @@ export default function FcmSignup() {
     }
   };
 
-  const CardShell = ({ children }) => (
-    <div className="bg-gray-800/40 p-8 rounded-lg border border-gray-700 text-center">
-      {children}
-    </div>
-  );
-
-  // 1. Show a loading state initially
-  if (authState.status === "loading") {
-    return (
-      <CardShell>
-        <p className="text-gray-300">Loading member status...</p>
-      </CardShell>
-    );
-  }
-
-  // 2. If user is NOT signed in, show a message
-  if (authState.status === "unauthenticated") {
-    return (
-      <CardShell>
-        <h3 className="text-xl font-bold mb-4 text-white">
-          Member Announcements
-        </h3>
-        <p className="text-gray-300">
-          Please sign in to enable push notifications.
-        </p>
-      </CardShell>
-    );
-  }
-
-  // 3. If user IS signed in, show the button
   return (
     <CardShell>
-      <h3 className="text-xl font-bold mb-4 text-white">
-        Enable Push Announcements
+      {/* 1. Add the icon back here */}
+      <FaEnvelope size={32} className="text-blue-400 mb-4 mx-auto" />
+
+      <h3 className="text-xl font-bold mb-2 text-white">
+        Member Announcements
       </h3>
-      <p className="text-gray-300 mb-4">
-        Get instant updates on club events, meetings, and more!
+      <p className="text-gray-300 mb-4 flex-grow">
+        Enable push notifications to stay updated with club news.
       </p>
-      <button
-        onClick={handleSignup}
-        disabled={loading}
-        className="bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 disabled:bg-gray-500"
-      >
-        {loading ? "Enabling..." : "Enable Notifications"}
-      </button>
-      {message && <p className="mt-4 text-sm text-gray-300">{message}</p>}
+
+      {/* This part is correct! The mt-auto pushes the button down */}
+      <div className="mt-auto">
+        <button
+          onClick={handleSignup}
+          disabled={loading}
+          className="bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 disabled:bg-gray-500"
+        >
+          {loading ? "Enabling..." : "Enable Notifications"}
+        </button>
+        {/* Added a fixed height to the message to prevent layout shift */}
+        {message && <p className="mt-4 text-sm text-gray-300 h-5">{message}</p>}
+      </div>
     </CardShell>
   );
 }

@@ -4,6 +4,7 @@
 import { useState } from "react";
 import { getAuth, sendSignInLinkToEmail } from "firebase/auth";
 import { app } from "@/lib/firebase";
+import { FiAlertTriangle } from "react-icons/fi";
 
 export default function EmailSignIn() {
   const [email, setEmail] = useState("");
@@ -53,9 +54,13 @@ export default function EmailSignIn() {
       <h3 className="text-xl font-bold mb-2 text-white text-center">
         Member Sign-In
       </h3>
-      <p className="text-gray-300 mb-6 text-center">
-        Enter your SHSU email to get a secure sign-in link.
-      </p>
+      <div className="bg-yellow-900/30 border border-yellow-700 text-yellow-200 text-sm rounded-md p-3 mb-6 max-w-sm flex items-center gap-x-3">
+        <FiAlertTriangle className="h-5 w-5 flex-shrink-0" />
+        <p className="text-left">
+          <strong>Important:</strong> Please open the sign-in link on the{" "}
+          <strong>same device and browser</strong> you are using right now.
+        </p>
+      </div>
       <form
         onSubmit={handleSignIn}
         className="flex flex-col items-center gap-4"
