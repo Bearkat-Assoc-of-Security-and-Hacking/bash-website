@@ -13,7 +13,7 @@ import Modal from "./modal";
 import EmailSignIn from "./emailSignIn";
 
 //Import the component that will be shown after login
-import FcmSignup from "/src/fcmSignup.js";
+import FcmSignup from "/src/FcmSignup.js";
 
 export default function GetInvolved() {
   const [isModalOpen, setIsModalOpen] = useState(false);
