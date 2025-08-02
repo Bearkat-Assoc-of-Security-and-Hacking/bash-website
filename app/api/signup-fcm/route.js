@@ -1,5 +1,5 @@
 // /app/api/signup-fcm/route.js
-
+export const runtime = "edge";
 import { getFirestore } from "firebase-admin/firestore";
 import { getAuth } from "firebase-admin/auth";
 import { initializeAdminApp } from "@/lib/server/firebaseAdmin";
