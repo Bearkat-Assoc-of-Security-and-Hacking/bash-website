@@ -1,40 +1,28 @@
-// /functions/index.js
-
+// functions/index.js
 const { onCall, HttpsError } = require("firebase-functions/v2/https");
+const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 
-// Initialize the app only once
 if (!admin.apps.length) {
   admin.initializeApp();
 }
 
 /**
  * Sends a push notification announcement to all registered devices.
- * This is a secure function that requires the caller to be authenticated.
+ * Requires authentication.
  */
 exports.sendAnnouncement = onCall(async (request) => {
-  // Security check: Ensure the caller is a signed-in user.
   if (!request.auth) {
-    throw new HttpsError(
-      "unauthenticated",
-      "This function can only be called by an authenticated user."
-    );
+    throw new HttpsError("unauthenticated", "User must be authenticated");
   }
-
   const { title, body } = request.data;
   const db = admin.firestore();
-
   try {
-    // Use a collectionGroup query to get all 'fcm-tokens' collections
     const snapshot = await db.collectionGroup("fcm-tokens").get();
-
     if (snapshot.empty) {
       return { success: true, message: "No subscribers found." };
     }
-
-    // Extract the token strings from the document IDs
     const tokens = snapshot.docs.map((doc) => doc.id);
-
     const message = {
       notification: {
         title: title || "BASH Cyber Club Update",
@@ -42,11 +30,11 @@ exports.sendAnnouncement = onCall(async (request) => {
       },
       tokens,
     };
-
     const response = await admin.messaging().sendMulticast(message);
-    console.log("Successfully sent to", response.successCount, "devices");
+    functions.logger.info(
+      `Successfully sent to ${response.successCount} devices`
+    );
 
-    // Automatic Cleanup: Find and delete any tokens that are no longer valid.
     const tokensToDelete = [];
     response.responses.forEach((result, index) => {
       const error = result.error;
@@ -57,27 +45,60 @@ exports.sendAnnouncement = onCall(async (request) => {
         tokensToDelete.push(tokens[index]);
       }
     });
-
     if (tokensToDelete.length > 0) {
-      const deletePromises = [];
-      const invalidTokenDocs = await db
-        .collectionGroup("fcm-tokens")
-        .where(admin.firestore.FieldPath.documentId(), "in", tokensToDelete)
-        .get();
-      invalidTokenDocs.forEach((doc) => {
-        deletePromises.push(doc.ref.delete());
-      });
-      await Promise.all(deletePromises);
-      console.log(`Deleted ${tokensToDelete.length} invalid tokens.`);
+      const batchSize = 30;
+      for (let i = 0; i < tokensToDelete.length; i += batchSize) {
+        const batchTokens = tokensToDelete.slice(i, i + batchSize);
+        const invalidTokenDocs = await db
+          .collectionGroup("fcm-tokens")
+          .where(admin.firestore.FieldPath.documentId(), "in", batchTokens)
+          .get();
+        const deletePromises = [];
+        invalidTokenDocs.forEach((doc) => {
+          deletePromises.push(doc.ref.delete());
+        });
+        await Promise.all(deletePromises);
+      }
+      functions.logger.info(`Deleted ${tokensToDelete.length} invalid tokens.`);
     }
-
     return {
       success: true,
       successCount: response.successCount,
       failureCount: response.failureCount,
     };
   } catch (err) {
-    console.error("Send error:", err);
+    functions.logger.error("Send error:", err);
     throw new HttpsError("internal", "Failed to send announcement.");
+  }
+});
+
+/**
+ * Registers an FCM token for a user.
+ * Requires authentication via Firebase ID token.
+ */
+exports.signupFcm = onCall(async (request) => {
+  if (!request.auth) {
+    throw new HttpsError("unauthenticated", "User must be authenticated");
+  }
+
+  const { token } = request.data;
+  if (!token) {
+    throw new HttpsError("invalid-argument", "FCM token required");
+  }
+
+  try {
+    const userId = request.auth.uid;
+    const db = admin.firestore();
+    const userFcmRef = db
+      .collection("users")
+      .doc(userId)
+      .collection("fcm-tokens")
+      .doc(token);
+    await userFcmRef.set({ signedUpAt: new Date() });
+
+    return { success: true };
+  } catch (error) {
+    functions.logger.error("Error registering FCM token:", error);
+    throw new HttpsError("internal", "Failed to register FCM token");
   }
 });

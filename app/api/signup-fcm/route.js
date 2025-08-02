@@ -1,54 +1,55 @@
-// /app/api/signup-fcm/route.js
+// app/api/signup-fcm/route.js
+import { getAuth } from "firebase/auth";
+import { app } from "@/lib/firebase";
+
 export const runtime = "edge";
-import { getFirestore } from "firebase-admin/firestore";
-import { getAuth } from "firebase-admin/auth";
-import { initializeAdminApp } from "@/lib/server/firebaseAdmin";
 
-// Initialize the admin app
-initializeAdminApp();
-
-export async function POST(req) {
-  const idToken = req.headers.get("Authorization")?.split("Bearer ")[1];
-
-  if (!idToken) {
-    return new Response(JSON.stringify({ error: "Unauthorized" }), {
-      status: 401,
-    });
-  }
-
+export async function POST(request) {
   try {
-    const decodedToken = await getAuth().verifyIdToken(idToken);
-    const uid = decodedToken.uid;
-
-    const { token: fcmToken } = await req.json();
-    if (!fcmToken) {
+    const { token } = await request.json();
+    if (!token) {
       return new Response(JSON.stringify({ error: "FCM token required" }), {
         status: 400,
       });
     }
 
-    // Using the Admin SDK's chained syntax to get the document reference
-    const db = getFirestore();
-    const userFcmRef = db
-      .collection("users")
-      .doc(uid)
-      .collection("fcm-tokens")
-      .doc(fcmToken);
+    const auth = getAuth(app);
+    const idToken = await auth.currentUser?.getIdToken();
+    if (!idToken) {
+      return new Response(JSON.stringify({ error: "Unauthorized" }), {
+        status: 401,
+      });
+    }
 
-    // Using the .set() method on the document reference
-    await userFcmRef.set({
-      signedUpAt: new Date(), // Using new Date() is fine on the server
+    const response = await fetch(
+      "https://us-central1-bash-website-backend.cloudfunctions.net/signupFcm",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${idToken}`,
+        },
+        body: JSON.stringify({ data: { token } }),
+      }
+    );
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || "Cloud Function call failed");
+    }
+
+    const result = await response.json();
+    return new Response(JSON.stringify(result), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
     });
-
-    return new Response(JSON.stringify({ success: true }), { status: 200 });
   } catch (error) {
     console.error("API Error:", error);
-    // The error originates from the catch block
     return new Response(
       JSON.stringify({
-        error: "Invalid authentication token or server error.",
+        error: "Failed to register FCM token: " + error.message,
       }),
-      { status: 401 }
+      { status: 500 }
     );
   }
 }

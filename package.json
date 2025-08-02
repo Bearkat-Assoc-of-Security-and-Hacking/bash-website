@@ -6,12 +6,15 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "pages:build": "npx @cloudflare/next-on-pages",
+    "preview": "npm run pages:build && wrangler pages dev .vercel/output/static",
+    "deploy": "npm run pages:build && wrangler pages deploy .vercel/output/static",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@cloudflare/next-on-pages": "^1.14.0",
     "firebase": "^12.0.0",
-    "firebase-admin": "^13.4.0",
     "lottie-react": "^2.4.1",
     "next": "15.3.4",
     "react": "^19.0.0",
@@ -21,9 +24,11 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@next/bundle-analyzer": "^15.3.4",
     "@tailwindcss/postcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "15.3.4",
+    "firebase-admin": "^13.4.0",
     "tailwindcss": "^4"
   }
 }
