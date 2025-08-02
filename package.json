@@ -1,15 +1,19 @@
 {
   "name": "bash-website",
   "version": "0.1.0",
-  "author": "Bruce Mikel bmikel2001@proton.me",
+  "author": "Bruce Mikel <bmikel2001@proton.me>",
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build --turbo",
+    "build": "next build",
+    "pages:build": "npx @cloudflare/next-on-pages",
+    "preview": "npm run pages:build && wrangler pages dev .vercel/output/static",
+    "deploy": "npm run pages:build && wrangler pages deploy .vercel/output/static",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@cloudflare/next-on-pages": "^1.14.0",
     "firebase": "^12.0.0",
     "firebase-admin": "^13.4.0",
     "lottie-react": "^2.4.1",
