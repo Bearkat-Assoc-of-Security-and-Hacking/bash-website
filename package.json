@@ -13,7 +13,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@cloudflare/next-on-pages": "^1.13.13", // Updated from ^1.14.0
+    "@cloudflare/next-on-pages": "^1.13.13",
     "firebase": "^12.0.0",
     "lottie-react": "^2.4.1",
     "next": "15.3.4",
