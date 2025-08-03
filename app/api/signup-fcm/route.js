@@ -1,26 +1,18 @@
-// app/api/signup-fcm/route.js
-import { getAuth } from "firebase/auth";
-import { app } from "@/lib/firebase";
-
 export const runtime = "edge";
 
 export async function POST(request) {
   try {
-    const { token } = await request.json();
+    const { token, idToken } = await request.json();
     if (!token) {
       return new Response(JSON.stringify({ error: "FCM token required" }), {
         status: 400,
       });
     }
-
-    const auth = getAuth(app);
-    const idToken = await auth.currentUser?.getIdToken();
     if (!idToken) {
-      return new Response(JSON.stringify({ error: "Unauthorized" }), {
+      return new Response(JSON.stringify({ error: "ID token required" }), {
         status: 401,
       });
     }
-
     const response = await fetch(
       "https://us-central1-bash-website-backend.cloudfunctions.net/signupFcm",
       {
@@ -32,12 +24,10 @@ export async function POST(request) {
         body: JSON.stringify({ data: { token } }),
       }
     );
-
     if (!response.ok) {
       const errorData = await response.json();
       throw new Error(errorData.error || "Cloud Function call failed");
     }
-
     const result = await response.json();
     return new Response(JSON.stringify(result), {
       status: 200,
