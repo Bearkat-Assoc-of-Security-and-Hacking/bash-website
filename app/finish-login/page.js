@@ -1,10 +1,9 @@
 export const dynamic = "force-dynamic";
 
+import dyn from "next/dynamic";
+
 const FinishLoginClient = dynamic(
-  async () => {
-    const mod = await import("./FinishLoginClient");
-    return mod.default;
-  },
+  () => import("./FinishLoginClient").then((mod) => mod.default),
   { ssr: false }
 );
 
