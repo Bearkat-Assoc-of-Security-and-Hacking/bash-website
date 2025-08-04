@@ -4,7 +4,7 @@ export async function POST(request) {
   try {
     const { token } = await request.json();
     if (!token) {
-      return new Response(JSON.stringify({ error: "FCM token required" }), {
+      return new Response(JSON.stringify({ error: "FCM token is required" }), {
         status: 400,
       });
     }
@@ -18,7 +18,7 @@ export async function POST(request) {
     const idToken = authHeader.split("Bearer ")[1];
 
     const response = await fetch(
-      "https://us-central1-bash-website-backend.cloudfunctions.net/signupFcm",
+      "https://us-central1-bash-website-backend.cloudfunctions.net/unsubscribeFcm",
       {
         method: "POST",
         headers: {
@@ -39,9 +39,7 @@ export async function POST(request) {
     });
   } catch (error) {
     return new Response(
-      JSON.stringify({
-        error: "Failed to register FCM token: " + error.message,
-      }),
+      JSON.stringify({ error: "Failed to unsubscribe: " + error.message }),
       { status: 500 }
     );
   }

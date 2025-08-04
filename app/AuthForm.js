@@ -41,8 +41,9 @@ export default function AuthForm() {
           password
         );
         await sendEmailVerification(userCredential.user);
+        await auth.signOut(); // Immediately sign out the user
         setFeedback({
-          text: "Success! Account created. Please check your SHSU email to verify your account before signing in.",
+          text: "If this is a valid shsu account you will get a email for a verification link. You must open the link on the same device and browser and then signin",
           type: "success",
         });
         setIsSignUp(false); // Switch to sign-in form
