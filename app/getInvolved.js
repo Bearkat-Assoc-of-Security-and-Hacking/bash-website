@@ -1,36 +1,47 @@
-// In file /app/getInvolved.js
 "use client";
-//Imports for Firebase authentication state
 import { useState, useEffect } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { app } from "@/lib/firebase"; // Make sure this path is correct for you
+import { app } from "@/lib/firebase";
 
-// Our existing imports
 import { FiUsers, FiMic } from "react-icons/fi";
 import { FaDiscord, FaEnvelope } from "react-icons/fa";
 import ActionCard from "./actionCard";
 import Modal from "./modal";
-import EmailSignIn from "./emailSignIn";
-
-//Import the component that will be shown after login
 import FcmSignup from "/src/FcmSignup.js";
+
+// Import the new email/password authentication form
+import AuthForm from "./AuthForm";
 
 export default function GetInvolved() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  //State to manage the user and loading status
   const [user, setUser] = useState(null);
   const [authLoading, setAuthLoading] = useState(true);
 
-  //useEffect hook to listen for auth changes
   useEffect(() => {
+    // Register the Firebase Messaging service worker
+    if (typeof window !== "undefined" && "serviceWorker" in navigator) {
+      navigator.serviceWorker
+        .register("/firebase-messaging-sw.js")
+        .then((registration) => {
+          console.log("Service Worker registered successfully.");
+        })
+        .catch((error) => {
+          console.error("Service Worker registration failed:", error);
+        });
+    }
+
+    // Listen for changes in the user's sign-in state
     const auth = getAuth(app);
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setAuthLoading(false);
+      // Close the modal automatically on successful sign-in
+      if (currentUser) {
+        setIsModalOpen(false);
+      }
     });
 
-    // Cleanup subscription on component unmount
+    // Clean up the listener when the component is unmounted
     return () => unsubscribe();
   }, []);
 
@@ -71,15 +82,13 @@ export default function GetInvolved() {
 
           {!authLoading &&
             (user ? (
-              // If logged IN, show the FcmSignup component
               <FcmSignup />
             ) : (
-              // If logged OUT, show the original sign-up card
               <ActionCard
                 icon={<FaEnvelope size={32} className="text-blue-400 mb-4" />}
                 title="Member Announcements"
-                description="Sign in with your SHSU email to enable push notifications for meeting reminders."
-                buttonText="Sign Up"
+                description="Sign up or log in with your SHSU email to enable push notifications for meeting reminders."
+                buttonText="Sign Up / Log In"
                 onClick={() => setIsModalOpen(true)}
               />
             ))}
@@ -87,7 +96,7 @@ export default function GetInvolved() {
       </section>
 
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <EmailSignIn />
+        <AuthForm />
       </Modal>
     </>
   );
