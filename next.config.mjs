@@ -1,6 +1,4 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  // The webpack and serverExternalPackages configurations have been removed.
-};
+const nextConfig = {};
 
 export default nextConfig;
