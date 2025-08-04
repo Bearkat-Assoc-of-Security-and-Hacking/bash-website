@@ -2,25 +2,37 @@ export const runtime = "edge";
 
 export async function POST(request) {
   try {
-    const { token, idToken } = await request.json();
+    // 1. Get the FCM token from the request body
+    const { token } = await request.json();
     if (!token) {
       return new Response(JSON.stringify({ error: "FCM token required" }), {
         status: 400,
       });
     }
-    if (!idToken) {
-      return new Response(JSON.stringify({ error: "ID token required" }), {
-        status: 401,
-      });
+
+    // 2. Get the authentication token from the Authorization header
+    const authHeader = request.headers.get("Authorization");
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return new Response(
+        JSON.stringify({ error: "Authorization header required" }),
+        {
+          status: 401,
+        }
+      );
     }
+    const idToken = authHeader.split("Bearer ")[1];
+
+    // 3. Forward the request to your actual backend Cloud Function
     const response = await fetch(
       "https://us-central1-bash-website-backend.cloudfunctions.net/signupFcm",
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          // Use the idToken we just extracted from the header
           Authorization: `Bearer ${idToken}`,
         },
+        // The body now correctly matches what the Cloud Function expects
         body: JSON.stringify({ data: { token } }),
       }
     );

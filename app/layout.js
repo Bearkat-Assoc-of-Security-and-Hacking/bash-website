@@ -3,7 +3,6 @@ import { Inter, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "../src/Navbar";
 import Footer from "../src/Footer";
-import Script from "next/script"; // Added import for Script component
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -30,11 +29,6 @@ export default function RootLayout({ children }) {
           <main className="flex-grow container mx-auto p-4">{children}</main>
           <Footer />
         </div>
-        {/* Added Script to register the service worker */}
-        <Script
-          src="/firebase-messaging-sw.js"
-          strategy="afterInteractive" // Loads after page is interactive to avoid delaying render
-        />
       </body>
     </html>
   );
