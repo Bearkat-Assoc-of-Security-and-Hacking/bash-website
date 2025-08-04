@@ -28,7 +28,6 @@
     "@tailwindcss/postcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "15.3.4",
-    "firebase-admin": "^13.4.0",
     "tailwindcss": "^4"
   }
 }
