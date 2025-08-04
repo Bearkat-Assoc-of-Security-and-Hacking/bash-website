@@ -1,3 +1,4 @@
+export const runtime = "edge"; // <-- ADD THIS LINE
 export const dynamic = "force-dynamic";
 
 import dyn from "next/dynamic";
