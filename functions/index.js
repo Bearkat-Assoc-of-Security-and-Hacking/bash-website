@@ -1,5 +1,4 @@
-// functions/index.js
-const { onCall, HttpsError } = require("firebase-functions/v2/https");
+const { onCall, HttpsError } = require("firebase-functions/v2/onCall");
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 
@@ -8,8 +7,7 @@ if (!admin.apps.length) {
 }
 
 /**
- * Sends a push notification announcement to all registered devices.
- * Requires authentication.
+ * Sends a push notification announcement to all registered devices using a data payload.
  */
 exports.sendAnnouncement = onCall(async (request) => {
   if (!request.auth) {
@@ -24,7 +22,7 @@ exports.sendAnnouncement = onCall(async (request) => {
     }
     const tokens = snapshot.docs.map((doc) => doc.id);
     const message = {
-      notification: {
+      data: {
         title: title || "BASH Cyber Club Update",
         body: body || "Check the site for details!",
       },
@@ -73,32 +71,70 @@ exports.sendAnnouncement = onCall(async (request) => {
 });
 
 /**
- * Registers an FCM token for a user.
- * Requires authentication via Firebase ID token.
+ * Registers an FCM token for a user, enforcing a limit of two tokens.
  */
 exports.signupFcm = onCall(async (request) => {
   if (!request.auth) {
     throw new HttpsError("unauthenticated", "User must be authenticated");
   }
-
   const { token } = request.data;
   if (!token) {
     throw new HttpsError("invalid-argument", "FCM token required");
   }
-
   try {
     const userId = request.auth.uid;
     const db = admin.firestore();
-    const userFcmRef = db
+    const tokensCollectionRef = db
+      .collection("users")
+      .doc(userId)
+      .collection("fcm-tokens");
+    const snapshot = await tokensCollectionRef.get();
+
+    if (snapshot.size >= 2) {
+      functions.logger.warn(`User ${userId} has reached the token limit of 2.`);
+      throw new HttpsError(
+        "resource-exhausted",
+        "You have already enabled notifications on two devices."
+      );
+    }
+    const newDocRef = tokensCollectionRef.doc(token);
+    await newDocRef.set({ signedUpAt: new Date() });
+    return { success: true, message: "FCM token registered successfully." };
+  } catch (error) {
+    if (error instanceof HttpsError) {
+      throw error;
+    }
+    functions.logger.error("Error registering FCM token:", error);
+    throw new HttpsError("internal", "Failed to register FCM token");
+  }
+});
+
+/**
+ * Deletes a specified FCM token for the authenticated user.
+ */
+exports.unsubscribeFcm = onCall(async (request) => {
+  if (!request.auth) {
+    throw new HttpsError("unauthenticated", "User must be authenticated.");
+  }
+  const { token } = request.data;
+  if (!token) {
+    throw new HttpsError("invalid-argument", "An FCM token is required.");
+  }
+  try {
+    const userId = request.auth.uid;
+    const db = admin.firestore();
+    const tokenRef = db
       .collection("users")
       .doc(userId)
       .collection("fcm-tokens")
       .doc(token);
-    await userFcmRef.set({ signedUpAt: new Date() });
-
-    return { success: true };
+    await tokenRef.delete();
+    functions.logger.info(
+      `Successfully unsubscribed token for user ${userId}.`
+    );
+    return { success: true, message: "Successfully unsubscribed." };
   } catch (error) {
-    functions.logger.error("Error registering FCM token:", error);
-    throw new HttpsError("internal", "Failed to register FCM token");
+    functions.logger.error("Error unsubscribing FCM token:", error);
+    throw new HttpsError("internal", "Failed to unsubscribe.");
   }
 });
