@@ -43,12 +43,13 @@ This website aims to be the go-to resource for current and prospective members, 
 
 - **Frontend Framework:** [Next.js](https://nextjs.org) (App Router)
 - **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **Backend** [Firebase](https://firebase.google.com/)
 - **Dynamic Data:**
   - [CTFtime API](https://ctftime.org/api/) for competition data.
   - [Google Calendar API](https://developers.google.com/calendar/api) for meeting schedules.
 - **Icons:** [React Icons](https://react-icons.github.io/react-icons/)
 - **Font Optimization:** [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) (using Inter font)
-- **Hosting:** Vercel (recommended)
+- **Hosting:** Cloudflare Pages
 
 ## Project Structure
 
@@ -102,3 +103,18 @@ pnpm dev
 # or
 bun dev
 ```
+
+### Google Calendar API Integration
+
+**Event data is fetched from the Google Calendar API at build time.**
+
+    Setup: To connect to the API, you will need a Google Calendar API key. This key should be stored in an environment variable named GOOGLE_CALENDAR_API_KEY.
+
+    Environment Variables: Make sure to create a .env.local file and add the following variable. See the .env.example file for a template.
+
+GOOGLE_CALENDAR_API_KEY="your_api_key_here"
+GOOGLE_CALENDAR_ID="your_calendar_id_here"
+
+Code Location: The logic for fetching the calendar data is located in lib/google-calendar.js.
+
+Important: Do not commit your API key or .env.local file to GitHub.
