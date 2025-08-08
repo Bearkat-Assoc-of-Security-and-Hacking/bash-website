@@ -60,7 +60,7 @@ const advisor = [
   {
     name: "Kirk Burns",
     title: "Off-campus Advisor",
-    details: "CISO at Texas Higer Ed Board",
+    details: "CISO at Texas Higher Ed Board",
     socials: {
       email: "mailto:LIB_KAB@SHSU.EDU",
       linkedin: "https://www.linkedin.com/in/kirk-burns-cissp-4a629115/",
