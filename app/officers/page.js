@@ -123,9 +123,27 @@ export default function OfficersPage() {
           </span>
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {officers.map((officer) => (
-            <OfficerCard key={officer.name} officer={officer} />
-          ))}
+          {officers.map((officer) => {
+            const isPresident =
+              officer.name === "Giovanni Martinez" && officer.title === "President";
+
+            if (isPresident) {
+              // Center the President card on its own row without full width
+              return (
+                <div
+                  key={officer.name}
+                  className="md:col-span-2 flex justify-center"
+                >
+                  <div className="w-full md:max-w-xl">
+                    <OfficerCard officer={officer} />
+                  </div>
+                </div>
+              );
+            }
+
+            // Default rendering for everyone else
+            return <OfficerCard key={officer.name} officer={officer} />;
+          })}
         </div>
       </div>
 
