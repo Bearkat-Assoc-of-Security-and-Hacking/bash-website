@@ -16,12 +16,6 @@ Contributors: Giovanni Martinez (GioMart1122)
   - [Installation](#installation)
   - [Running the Development Server](#running-the-development-server)
   - [Environment Variables](#environment-variables)
-- [API Integrations](#api-integrations)
-- [Styling](#styling)
-- [Deployment](#deployment)
-- [Learning Resources](#learning-resources)
-- [Contributing](#contributing)
-- [License](#license)
 
 ---
 
@@ -82,12 +76,6 @@ Follow these steps to set up and run the BASH website locally.
 2.  **Install dependencies:**
     ```bash
     npm install
-    # or
-    yarn install
-    # or
-    pnpm install
-    # or
-    bun install
     ```
 
 ### Running the Development Server
@@ -96,21 +84,15 @@ First, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-### Google Calendar API Integration
+### Environment Variables
 
 **Event data is fetched from the Google Calendar API at build time.**
 
-    Setup: To connect to the API, you will need a Google Calendar API key. This key should be stored in an environment variable named GOOGLE_CALENDAR_API_KEY.
+Setup: To connect to the API, you will need a Google Calendar API key. This key should be stored in an environment variable named GOOGLE_CALENDAR_API_KEY.
 
-    Environment Variables: Make sure to create a .env.local file and add the following variable. See the .env.example file for a template.
+Environment Variables: Make sure to create a .env.local file and add the following variable. See the .env.example file for a template.
 
 GOOGLE_CALENDAR_API_KEY="your_api_key_here"
 GOOGLE_CALENDAR_ID="your_calendar_id_here"
