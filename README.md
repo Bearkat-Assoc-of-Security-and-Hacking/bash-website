@@ -82,12 +82,6 @@ Follow these steps to set up and run the BASH website locally.
 2.  **Install dependencies:**
     ```bash
     npm install
-    # or
-    yarn install
-    # or
-    pnpm install
-    # or
-    bun install
     ```
 
 ### Running the Development Server
@@ -96,12 +90,6 @@ First, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 ### Google Calendar API Integration
