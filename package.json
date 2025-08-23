@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "author": "Bruce Mikel <bmikel2001@proton.me>",
   "private": true,
+  "engines": {
+    "node": ">=22.0.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
