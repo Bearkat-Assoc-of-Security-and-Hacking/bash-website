@@ -4,9 +4,6 @@ import { FiUsers, FiMic } from "react-icons/fi";
 import { FaDiscord } from "react-icons/fa";
 
 export default function GetInvolved() {
-  // The actions array has been removed.
-  // The component now returns static JSX directly.
-
   return (
     <section className="py-16">
       <h2 className="text-3xl font-bold text-center mb-12">Get Involved</h2>
