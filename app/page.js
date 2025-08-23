@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import NotificationInfoModal from "./NotificationInfoModal";
 import {
   FiCalendar,
   FiTerminal,
@@ -122,10 +121,6 @@ export default async function HomePage() {
 
       {/* --- Get Involved Section --- */}
       <GetInvolved />
-
-      <section className="py-16">
-        <NotificationInfoModal />
-      </section>
     </div>
   );
 }
