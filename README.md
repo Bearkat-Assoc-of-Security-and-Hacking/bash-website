@@ -63,7 +63,7 @@ Follow these steps to set up and run the BASH website locally.
 ### Prerequisites
 
 - Node.js (LTS version recommended)
-- npm, Yarn, pnpm, or Bun package manager
+- npm (node package manager)
 
 ### Installation
 
