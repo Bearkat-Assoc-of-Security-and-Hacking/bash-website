@@ -3,6 +3,7 @@
 The official website for the Sam Houston State University Bearkat Association of Security and Hacking (BASH) club. This platform serves as a central hub for club information, upcoming meetings, CTF competitions, resources, and more.
 
 Lead Developer: Bruce M (TipsyPhiber)
+
 Contributors: Giovanni Martinez (GioMart1122)
 
 ## Table of Contents
