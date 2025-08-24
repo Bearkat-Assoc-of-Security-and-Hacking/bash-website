@@ -36,9 +36,9 @@ This website aims to be the go-to resource for current and prospective members, 
 
 ## Tech Stack
 
-- **Frontend Framework:** [Next.js](https://nextjs.org) (App Router)
+- **Frontend Framework:** [Next.js](https://nextjs.org)
 - **Styling:** [Tailwind CSS](https://tailwindcss.com/)
-- **Backend** [Firebase](https://firebase.google.com/)
+- **Backend** [App Router]
 - **Dynamic Data:**
   - [CTFtime API](https://ctftime.org/api/) for competition data.
   - [Google Calendar API](https://developers.google.com/calendar/api) for meeting schedules.
@@ -50,11 +50,11 @@ This website aims to be the go-to resource for current and prospective members, 
 
 This project utilizes a non-standard but organized file structure:
 
-- **`app/`**: Contains all page-specific components and routes (e.g., `app/competitions/page.js` and its co-located components in `app/competitions/`).
-- **`src/`**: Houses global, reusable components (e.g., `src/Navbar.js`, `src/Footer.js`).
-- **`lib/`**: Stores utility functions, especially for API interactions (e.g., `lib/googleCalendar.js`).
+- **`app/`**: Contains all page-specific components and routes (e.g., `/competitions/page.js` and its co-located components in `/competitions/`).
+- **`globals/`**: Houses global, reusable components (e.g., `/Navbar.js`, `/Footer.js`).
+- **`lib/`**: Stores utility functions, especially for API interactions (e.g., `/googleCalendar.js`).
 - **`public/`**: Static assets like images and PDFs
-- **`app/api/`**: Next.js API routes for backend data fetching (e.g., `app/api/ctf/route.js`).
+- **`app/api/`**: Next.js API routes for backend data fetching (e.g., `/ctf/route.js`).
 
 ## Getting Started
 
