@@ -1,4 +1,4 @@
-// src/Navbar.js
+// globals/Navbar.js
 
 // Added this to the very top to enable client-side interactivity (useState)
 "use client";

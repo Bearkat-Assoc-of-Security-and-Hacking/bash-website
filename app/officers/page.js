@@ -1,6 +1,6 @@
 // app/officers/page.js
 
-import OfficerCard from "../../src/OfficerCard";
+import OfficerCard from "../../globals/OfficerCard";
 
 //OFFICER DATA STRUCTURE
 const officers = [
@@ -125,7 +125,8 @@ export default function OfficersPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {officers.map((officer) => {
             const isPresident =
-              officer.name === "Giovanni Martinez" && officer.title === "President";
+              officer.name === "Giovanni Martinez" &&
+              officer.title === "President";
 
             if (isPresident) {
               // Center the President card on its own row without full width
