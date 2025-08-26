@@ -1,7 +1,7 @@
 import { Inter, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "../src/Navbar";
-import Footer from "../src/Footer";
+import Navbar from "../globals/Navbar";
+import Footer from "../globals/Footer";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 

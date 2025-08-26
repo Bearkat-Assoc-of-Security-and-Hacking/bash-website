@@ -3,6 +3,7 @@
 The official website for the Sam Houston State University Bearkat Association of Security and Hacking (BASH) club. This platform serves as a central hub for club information, upcoming meetings, CTF competitions, resources, and more.
 
 Lead Developer: Bruce M (TipsyPhiber)
+
 Contributors: Giovanni Martinez (GioMart1122)
 
 ## Table of Contents
@@ -35,7 +36,7 @@ This website aims to be the go-to resource for current and prospective members, 
 
 ## Tech Stack
 
-- **Frontend Framework:** [Next.js](https://nextjs.org) (App Router)
+- **Frontend Framework:** [Next.js](https://nextjs.org)
 - **Styling:** [Tailwind CSS](https://tailwindcss.com/)
 - **Dynamic Data:**
   - [CTFtime API](https://ctftime.org/api/) for competition data.
@@ -48,11 +49,11 @@ This website aims to be the go-to resource for current and prospective members, 
 
 This project utilizes a non-standard but organized file structure:
 
-- **`app/`**: Contains all page-specific components and routes (e.g., `app/competitions/page.js` and its co-located components in `app/competitions/`).
-- **`src/`**: Houses global, reusable components (e.g., `src/Navbar.js`, `src/Footer.js`).
-- **`lib/`**: Stores utility functions, especially for API interactions (e.g., `lib/googleCalendar.js`).
+- **`app/`**: Contains all page-specific components and routes (e.g., `/competitions/page.js` and its co-located components in `/competitions/`).
+- **`globals/`**: Houses global, reusable components (e.g., `/Navbar.js`, `/Footer.js`).
+- **`lib/`**: Stores utility functions, especially for API interactions (e.g., `/googleCalendar.js`).
 - **`public/`**: Static assets like images and PDFs
-- **`app/api/`**: Next.js API routes for backend data fetching (e.g., `app/api/ctf/route.js`).
+- **`app/api/`**: Next.js API routes for backend data fetching (e.g., `/ctf/route.js`).
 
 ## Getting Started
 
@@ -61,7 +62,7 @@ Follow these steps to set up and run the BASH website locally.
 ### Prerequisites
 
 - Node.js (LTS version recommended)
-- npm, Yarn, pnpm, or Bun package manager
+- npm (node package manager)
 
 ### Installation
 

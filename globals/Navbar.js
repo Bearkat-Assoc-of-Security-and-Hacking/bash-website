@@ -1,4 +1,4 @@
-// src/Navbar.js
+// globals/Navbar.js
 
 // Added this to the very top to enable client-side interactivity (useState)
 "use client";
@@ -30,7 +30,7 @@ const Navbar = () => {
             className="flex items-center space-x-3 hover:opacity-80 transition-opacity"
           >
             <Image
-              src="/bash-logo-nobg.png"
+              src="/bearkatpaw-nobg.png"
               alt="BASH Logo"
               width={50} // Slightly increased size for better visibility
               height={50}

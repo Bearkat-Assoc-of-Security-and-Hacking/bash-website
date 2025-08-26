@@ -1,4 +1,4 @@
-// src/Footer.js
+// globals/Footer.js
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
