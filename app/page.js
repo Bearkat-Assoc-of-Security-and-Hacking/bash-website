@@ -52,8 +52,8 @@ export default async function HomePage() {
       <section className="text-center pt-0 pb-0">
         <div className="flex justify-center mb-8">
           <Image
-            src="/bearkatpaw-nobg.png"
-            alt="Bearkat Paw Logo"
+            src="/bash-logo-nobg.png"
+            alt="Bash Shield"
             width={300}
             height={300}
             className="animation-float"
