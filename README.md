@@ -38,7 +38,6 @@ This website aims to be the go-to resource for current and prospective members, 
 
 - **Frontend Framework:** [Next.js](https://nextjs.org)
 - **Styling:** [Tailwind CSS](https://tailwindcss.com/)
-- **Backend** [App Router]
 - **Dynamic Data:**
   - [CTFtime API](https://ctftime.org/api/) for competition data.
   - [Google Calendar API](https://developers.google.com/calendar/api) for meeting schedules.
