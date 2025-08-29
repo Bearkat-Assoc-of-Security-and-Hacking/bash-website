@@ -59,9 +59,9 @@ const resourceCategories = [
         link: "https://www.zerodayinitiative.com/blog",
       },
       {
-        name: "TrendMirco",
+        name: "Trend Mirco",
         description:
-          "Covers current APT threats & Targeted Attacks, ransomware, and exploits and vulnerabilities",
+          "Covers current APT threats & Targeted Attacks, ransomware, and exploits and vulnerabilities. ",
         link: "https://www.trendmicro.com/en_us/research.html",
       },
     ],
