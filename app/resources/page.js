@@ -58,6 +58,12 @@ const resourceCategories = [
           "In-depth vulnerability analysis and exploit breakdowns from one of the leading bug bounty programs.",
         link: "https://www.zerodayinitiative.com/blog",
       },
+      {
+        name: "TrendMirco",
+        description:
+          "Covers current APT threats & Targeted Attacks, ransomware, and exploits and vulnerabilities",
+        link: "https://www.trendmicro.com/en_us/research.html",
+      },
     ],
   },
 ];
