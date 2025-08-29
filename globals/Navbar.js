@@ -30,7 +30,7 @@ const Navbar = () => {
             className="flex items-center space-x-3 hover:opacity-80 transition-opacity"
           >
             <Image
-              src="/bearkatpaw-nobg.png"
+              src="/bearkatpaw-nobg.avif"
               alt="BASH Logo"
               width={50} // Slightly increased size for better visibility
               height={50}

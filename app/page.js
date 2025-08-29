@@ -52,7 +52,7 @@ export default async function HomePage() {
       <section className="text-center pt-0 pb-0">
         <div className="flex justify-center mb-8">
           <Image
-            src="/bash-logo-nobg.png"
+            src="/bash-logo-nobg.avif"
             alt="Bash Shield"
             width={300}
             height={300}
