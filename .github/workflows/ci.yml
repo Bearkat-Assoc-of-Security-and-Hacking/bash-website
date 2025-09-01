@@ -1,0 +1,42 @@
+# A name for your workflow, which will be displayed in the "Actions" tab of your GitHub repo.
+name: CI Pipeline
+
+# This section defines the triggers for the workflow.
+on:
+  # Run the workflow when code is pushed to the "main" branch.
+  push:
+    branches: ["main"]
+  # Run the workflow when a pull request is opened or updated for any branch.
+  pull_request:
+    branches: ["**"]
+
+# This section defines the jobs that will run.
+jobs:
+  # We have one job in this workflow, which we've named "build-and-test".
+  build-and-test:
+    # This specifies the virtual machine environment to run the job on. "ubuntu-latest" is a reliable and common choice.
+    runs-on: ubuntu-latest
+
+    # This section lists the individual steps the job will perform in order.
+    steps:
+      # Step 1: Check out our repository's code so the job can access it.
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # Step 2: Set up the specific version of Node.js we want to use.
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.0.0"
+
+      # Step 3: Install dependencies. "npm ci" is used instead of "npm install" because it's faster and more reliable for CI environments.
+      - name: Install Dependencies
+        run: npm ci
+
+      # Step 4: Run the linter. This assumes you have a "lint" script in our package.json file.
+      - name: Run Linter
+        run: npm run lint
+
+      # Step 5: Run the tests. This assumes you have a "test" script in our package.json file.
+      - name: Run Tests
+        run: npm run test
