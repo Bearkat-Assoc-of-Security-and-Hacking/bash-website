@@ -1,7 +1,7 @@
 "use client";
 
 import { FiUsers, FiMic } from "react-icons/fi";
-import { FaDiscord } from "react-icons/fa";
+import { FaDiscord, FaLinkedin } from "react-icons/fa";
 
 export default function GetInvolved() {
   return (
@@ -27,25 +27,6 @@ export default function GetInvolved() {
           </a>
         </div>
 
-        {/* Card 2: Attend a Meeting */}
-        <div className="bg-slate-800 p-6 rounded-lg border border-slate-700 text-center flex flex-col">
-          <div className="mx-auto">
-            <FiUsers size={32} className="text-blue-400 mb-4" />
-          </div>
-          <h3 className="text-xl font-bold mb-2 text-white">
-            Attend a Meeting
-          </h3>
-          <p className="text-gray-300 mb-4 flex-grow">
-            We welcome everyone, regardless of skill level. Come learn with us.
-          </p>
-          <a
-            href="/schedule"
-            className="mt-auto bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors"
-          >
-            View Schedule
-          </a>
-        </div>
-
         {/* Card 3: Speak at BASH */}
         <div className="bg-slate-800 p-6 rounded-lg border border-slate-700 text-center flex flex-col">
           <div className="mx-auto">
@@ -61,6 +42,25 @@ export default function GetInvolved() {
             className="mt-auto bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors"
           >
             Propose a Talk
+          </a>
+        </div>
+
+        {/* Card 4: Connect with us on Linkedin */}
+        <div className="bg-slate-800 p-6 rounded-lg border border-slate-700 text-center flex flex-col">
+          <div className="mx-auto">
+            <FaLinkedin size={32} className="text-blue-400 mb-4" />
+          </div>
+          <h3 className="text-xl font-bold mb-2 text-white">
+            Connect with us on Linkedin
+          </h3>
+          <p className="text-gray-300 mb-4 flex-grow">
+            Follow our LinkedIn page for updates and major news
+          </p>
+          <a
+            href="https://www.linkedin.com/company/bearkat-association-for-security-and-hacking-ba-h/"
+            className="mt-auto bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors"
+          >
+            Join Now
           </a>
         </div>
       </div>
