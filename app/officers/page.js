@@ -9,7 +9,7 @@ const officers = [
     title: "President",
     details: "",
     socials: {
-      email: "mailto:gio.a.martinez03@gmail.com",
+      email: "mailto:gam077@shsu.edu",
       linkedin: "https://www.linkedin.com/in/gio-mart/",
       github: "https://github.com/giomart1122",
     },
