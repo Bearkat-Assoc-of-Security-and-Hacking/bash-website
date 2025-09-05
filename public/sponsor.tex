@@ -1,0 +1,158 @@
+% Setting up the document class with appropriate options
+\documentclass[11pt,letterpaper]{article}
+
+% Including necessary packages for formatting and layout
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{noto}
+\usepackage{xcolor}
+\usepackage{hyphenat} % Added for better hyphenation
+
+% Configuring page geometry
+\geometry{margin=1in}
+
+% Fixing fancyhdr header height issue
+\setlength{\headheight}{13.6pt}
+\addtolength{\topmargin}{-1.6pt}
+
+% Defining custom orange color scheme
+\definecolor{primaryorange}{RGB}{204, 85, 0} % Sam Houston State University orange 
+\definecolor{bashblue}{RGB}{8, 21, 38} % define bash blue
+\pagecolor{black} % setting background color for document
+%\pagecolor{bashblue} % setting background color for document
+\color{white} %setting text color
+
+% Setting up header and footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\color{primaryorange}\textbf{Bearkat Association of Security and Hacking}}
+\fancyfoot[C]{\color{white}Page \thepage\ of \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% Customizing section titles
+\titleformat{\section}{\Large\bfseries\color{primaryorange}}{\thesection}{1em}{}
+\titleformat{\subsection}{\large\bfseries\color{primaryorange}}{\thesubsection}{1em}{}
+
+% Setting up hyperlink styles
+\hypersetup{
+    colorlinks=true,
+    linkcolor=primaryorange,
+    urlcolor=primaryorange,
+    pdfborder={0 0 0}
+}
+
+% Beginning the document
+\begin{document}
+
+% Creating the title page withtlogo
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    {\Huge\color{primaryorange}\textbf{Bearkat Association of Security and Hacking}\par}
+    \vspace{0.5cm}
+    {\Large Sponsorship Packet 2025--2026}\par
+    %insert bash logo here 
+    \centering
+    \vspace{20pt}
+    \includegraphics[width=0.6\textwidth]{bash-logo-nobg.png}
+    %  \includegraphics[width=0.6\textwidth]{bash-logo-nobg.png}
+    
+  
+    \vspace{4cm}
+    {\large Sam Houston State University}\par
+    \vspace{0.5cm}
+    {\large Huntsville, TX}\par
+    \vfill
+    {\normalsize Website: \url{bashcyberclub.org} | Email: \href{mailto:bashcyberclub@gmail.com}{bashcyberclub@gmail.com}}\par
+    \vspace{1cm}
+\end{titlepage}
+
+% Starting the main content
+\section*{About Us}
+% Introducing the club's mission and activities
+The Bearkat Association of Security and Hacking (BASH) at Sam Houston State University is a dynamic, student-led organization dedicated to empowering its members with cutting-edge blue team and red team cybersecurity skills. Our mission is to prepare students to excel as cybersecurity professionals through hands-on learning, collaboration, and engagement in competitions. \\
+
+We actively participate in national cybersecurity competitions, including the Collegiate Pen\-e\-tra\-tion Testing Com\-pe\-ti\-tion (C\-P\-T\-C), Collegiate Cyber Defense Com\-pe\-ti\-tion (C\-C\-D\-C), Hive\-storm, and the National Centers of Academic Excellence Cy\-ber\-games (NCAE), where members hone their skills in real-world scenarios.
+
+Beyond competitions, BASH holds bi-weekly meetings during the fall and spring semesters, for:
+\begin{itemize}
+    \item Competition preparation
+    \item Certification training
+    \item Professional development
+    \item Capture the Flag (CTF) events
+    \item Collaborative group projects
+\end{itemize}
+These activities foster creative problem-solving, bridge the gap between academia and industry, and build valuable professional connections.
+
+\section*{Partnership}
+% Highlighting the value of partnerships
+At BASH, we aim to bridge the gap between academia and industry by fostering strong partnerships with cybersecurity companies and professionals. These collaborations provide our members with real-world insights, helping them navigate career paths and stay ahead in the rapidly evolving cybersecurity landscape. \\
+
+By partnering with us, sponsors gain access to a talented pool of motivated students eager to contribute to the industry. Guest speakers, workshops, and recruitment events hosted by our partners provide unique opportunities to inspire and connect with the next generation of cybersecurity experts.
+
+\section*{Sponsorship Opportunities}
+% Presenting sponsorship tiers in a table
+We offer three sponsorship tiers to support our club's initiatives and provide value to our partners. Sponsorships are valid for two academic semesters.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{p{2cm}p{3cm}p{8cm}}
+        \toprule
+        \textbf{Tier} & \textbf{Amount} & \textbf{Benefits} \\
+        \midrule
+        Gold & \$2,000+ & 
+        \begin{itemize}[leftmargin=*,nosep]
+            \item Host a dedicated recruitment event
+            \item Priority scheduling for events
+            \item All benefits from lower tiers
+        \end{itemize} \\
+        Silver & \$1,500 & 
+        \begin{itemize}[leftmargin=*,nosep]
+            \item Host a technical workshop or meet-and-greet event
+            \item Access to club's resume bank
+            \item All benefits from lower tiers
+        \end{itemize} \\
+        Bronze & \$1000 & 
+        \begin{itemize}[leftmargin=*,nosep]
+            \item Recognition on club T-shirts
+            \item Recognition on club website
+        \end{itemize} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+\vspace{2cm}
+\textit{Note: Guest speaker presentations do not require a sponsorship tier purchase.}
+
+\section*{Impact}
+% Showcasing the club's achievements
+Since its inception, the Bearkat Association of Security and Hacking has made significant contributions to cybersecurity education and organizational growth:
+
+\begin{itemize}
+    \item \textbf{Competition Excellence}: Our members have consistently competed in top ranking competitions like C\-C\-D\-C and C\-P\-T\-C\@, demonstrating our ability to tackle complex cybersecurity challenges.
+    \item \textbf{Career Success}: BASH alumni have secured positions at leading organizations, including CrowdStrike, Protiviti, NASA and other federal agencies, reflecting our commitment to preparing students for industry roles.
+    \item \textbf{Skill Development}: We advocate for members in earning certifications such as CompTIA Security+, Cisco C\-C\-N\-A, and eJPT\@. Our organzation officiers help provide students the handson skills that lead them to secure internships and full-time roles in cybersecurity.
+\end{itemize}
+
+\section*{Contact Us}
+% Providing contact details
+For more information about sponsorship opportunities or to get involved, please reach out to us:
+
+\begin{itemize}
+    \item \textbf{Website}: \url{bashcyberclub.org}
+    \item \textbf{Email}: \href{mailto:bashcyberclub@gmail.com}{bashcyberclub@gmail.com}
+    \item \textbf{Address}: Bearkat Association of Security and Hacking, Sam Houston State University, Huntsville, TX
+\end{itemize}
+
+We look forward to partnering with you to advance cybersecurity education and innovation!
+
+\end{document}
