@@ -60,7 +60,7 @@ export default function GetInvolved() {
             href="https://www.linkedin.com/company/bearkat-association-for-security-and-hacking-ba-h/"
             className="mt-auto bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors"
           >
-            Join Now
+            Connect Here
           </a>
         </div>
       </div>
