@@ -130,7 +130,7 @@ export default function OfficersPage() {
               // Centered the top card to remove empty space on larger screens
               return (
                 <div
-                  key={officer.name}
+                  key={officer.title}
                   className="md:col-span-2 flex justify-center"
                 >
                   <div className="w-full md:max-w-xl">
@@ -140,7 +140,7 @@ export default function OfficersPage() {
               );
             }
 
-            return <OfficerCard key={officer.name} officer={officer} />;
+            return <OfficerCard key={officer.title} officer={officer} />;
           })}
         </div>
       </div>
