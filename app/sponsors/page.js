@@ -10,7 +10,7 @@ export default function SponsorsPage() {
         </p>
       </div>
 
-      {/* --- Our Goal Section --- */}
+      {/* --- Our Goal Section ---- */}
       <div className="bg-gray-800/40 border border-gray-700 rounded-lg p-8 mb-12">
         <h2 className="text-3xl font-bold mb-4 text-center text-blue-400">
           Our Goal
