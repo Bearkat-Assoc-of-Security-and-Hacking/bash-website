@@ -1,5 +1,3 @@
-// globals/Navbar.js
-
 // Added this to the very top to enable client-side interactivity (useState)
 "use client";
 
@@ -25,8 +23,10 @@ const Navbar = () => {
     <>
       <nav className="bg-transparent backdrop-blur-lg text-white p-4 sticky top-0 z-50">
         <div className="container mx-auto flex justify-between items-center">
+          {/* Add prefetch={false} here */}
           <Link
             href="/"
+            prefetch={false}
             className="flex items-center space-x-3 hover:opacity-80 transition-opacity"
           >
             <Image
@@ -44,9 +44,11 @@ const Navbar = () => {
           {/* Desktop Links: Hidden on mobile, flex on medium screens and up */}
           <div className="hidden md:flex items-center space-x-4">
             {navLinks.map((link) => (
+              // Add prefetch={false} for the Home link here
               <Link
                 key={link.href}
                 href={link.href}
+                prefetch={link.href === "/" ? false : true}
                 className="hover:text-blue-400 transition-colors"
               >
                 {link.label}
@@ -71,9 +73,11 @@ const Navbar = () => {
         <div className="md:hidden bg-gray-900/95 backdrop-blur-lg text-white absolute top-[85px] left-0 w-full z-40">
           <div className="flex flex-col items-center space-y-6 py-8">
             {navLinks.map((link) => (
+              // Add prefetch={false} for the Home link here
               <Link
                 key={link.href}
                 href={link.href}
+                prefetch={link.href === "/" ? false : true}
                 className="text-lg hover:text-blue-400 transition-colors"
                 onClick={() => setIsMenuOpen(false)} // Close menu on link click
               >
