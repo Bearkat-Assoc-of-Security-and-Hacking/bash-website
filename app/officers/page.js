@@ -89,7 +89,7 @@ const alumni = [
   {
     name: "Quentin Burns",
     title: "Past Education Director",
-    details: "SHSU SOC Alumni and aspiring Network Engineer",
+    details: "Jr. Network Associate @ OneSource Building Technologies",
     socials: {
       linkedin: "https://www.linkedin.com/in/burnsquentin/",
     },
