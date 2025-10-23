@@ -1,4 +1,5 @@
 import { FiDownload, FiMail } from "react-icons/fi";
+import Image from "next/image";
 
 export default function SponsorsPage() {
   return (
@@ -80,35 +81,19 @@ export default function SponsorsPage() {
         </div>
       </div>
 
-      {/* Future Sponsor Section to be updated */}
-      {/*
+      {/* Sponsor Section to be updated as needed*/}
       <div className="pt-16 mt-16 border-t border-gray-800">
         <h2 className="text-3xl font-bold text-center mb-8">Our Sponsors</h2>
         <div className="flex flex-wrap justify-center items-center gap-8">
           <Image
-            src="/bash-logo-nobg.png"
-            alt="Sponsor Logo 1"
-            width={150}
-            height={75}
-            className="opacity-70 hover:opacity-100 transition-opacity"
-          />
-          <Image
-            src="/bash-logo-nobg.png"
-            alt="Sponsor Logo 2"
-            width={150}
-            height={75}
-            className="opacity-70 hover:opacity-100 transition-opacity"
-          />
-          <Image
-            src="/bash-logo-nobg.png"
-            alt="Sponsor Logo 3"
+            src="/articwolf.avif"
+            alt="artic wolf logo"
             width={150}
             height={75}
             className="opacity-70 hover:opacity-100 transition-opacity"
           />
         </div>
       </div>
-      */}
     </div>
   );
 }
