@@ -145,7 +145,14 @@ export default function OfficersPage() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {advisor.map((person) => (
-            <OfficerCard key={person.name} officer={person} />
+            <div
+              key={person.name}
+              className="md:col-span-2 flex justify-center"
+            >
+              <div className="w-full md:max-w-xl">
+                <OfficerCard officer={person} />
+              </div>
+            </div>
           ))}
         </div>
       </div>
