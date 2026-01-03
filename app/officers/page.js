@@ -59,20 +59,11 @@ const officers = [
 const advisor = [
   {
     name: "Kirk Burns",
-    title: "Off-campus Advisor",
-    details: "CISO at Texas Higher Ed Board",
+    title: "Advisor",
+    details: "Cybersecurity Graduate Professor",
     socials: {
       email: "mailto:LIB_KAB@SHSU.EDU",
       linkedin: "https://www.linkedin.com/in/kirk-burns-cissp-4a629115/",
-    },
-  },
-  {
-    name: "Dustin Thornton",
-    title: "On-campus Advisor",
-    details: "SOC Manager ",
-    socials: {
-      email: "mailto:dustin.thornton@shsu.edu",
-      linkedin: "https://www.linkedin.com/in/dustin-c-thornton/",
     },
   },
 ];
@@ -150,11 +141,18 @@ export default function OfficersPage() {
         {" "}
         {/* mt-16 adds space between the two sections */}
         <h2 className="text-3xl font-bold text-center mb-8 tracking-wide">
-          <span className="border-b-4 border-red-500 pb-1">Advisors</span>
+          <span className="border-b-4 border-red-500 pb-1">Advisor</span>
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {advisor.map((person) => (
-            <OfficerCard key={person.name} officer={person} />
+            <div
+              key={person.name}
+              className="md:col-span-2 flex justify-center"
+            >
+              <div className="w-full md:max-w-xl">
+                <OfficerCard officer={person} />
+              </div>
+            </div>
           ))}
         </div>
       </div>
