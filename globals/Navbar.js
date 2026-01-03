@@ -4,7 +4,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { FiMenu, FiX } from "react-icons/fi"; // Using react-icons for the menu button
+import { FiMenu } from "react-icons/fi"; // Using react-icons for the menu button
 
 const Navbar = () => {
   // State to manage whether the mobile menu is open or closed
@@ -62,7 +62,7 @@ const Navbar = () => {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Toggle menu"
             >
-              {isMenuOpen ? <FiX size={28} /> : <FiMenu size={28} />}
+              <FiMenu size={28} />
             </button>
           </div>
         </div>
@@ -70,8 +70,16 @@ const Navbar = () => {
 
       {/* Mobile Dropdown Menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-gray-900/95 backdrop-blur-lg text-white absolute top-[85px] left-0 w-full z-40">
-          <div className="flex flex-col items-center space-y-6 py-8">
+        <div className="md:hidden bg-gray-900/95 backdrop-blur-lg text-white fixed top-0 right-0 w-full z-50">
+          <div className="flex justify-end p-4">
+            <button
+              onClick={() => setIsMenuOpen(false)}
+              aria-label="Close menu"
+            >
+              <FiX size={28} />
+            </button>
+          </div>
+          <div className="flex flex-col items-center space-y-6 py-8 pt-16">
             {navLinks.map((link) => (
               // Add prefetch={false} for the Home link here
               <Link

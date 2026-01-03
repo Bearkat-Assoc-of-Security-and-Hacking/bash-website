@@ -85,13 +85,19 @@ export default function SponsorsPage() {
       <div className="pt-16 mt-16 border-t border-gray-800">
         <h2 className="text-3xl font-bold text-center mb-8">Our Sponsors</h2>
         <div className="flex flex-wrap justify-center items-center gap-8">
-          <Image
-            src="/articwolf.avif"
-            alt="artic wolf logo"
-            width={150}
-            height={75}
-            className="opacity-70 hover:opacity-100 transition-opacity"
-          />
+          <a
+            href="https://arcticwolf.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image
+              src="/articwolf.avif"
+              alt="artic wolf logo"
+              width={150}
+              height={75}
+              className="opacity-70 hover:opacity-100 transition-opacity"
+            />
+          </a>
         </div>
       </div>
     </div>
