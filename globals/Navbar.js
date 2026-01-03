@@ -4,7 +4,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { FiMenu } from "react-icons/fi"; // Using react-icons for the menu button
+import { FiMenu, FiX } from "react-icons/fi"; // Using react-icons for the menu button
 
 const Navbar = () => {
   // State to manage whether the mobile menu is open or closed
@@ -70,7 +70,7 @@ const Navbar = () => {
 
       {/* Mobile Dropdown Menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-gray-900/95 backdrop-blur-lg text-white fixed top-0 right-0 w-full z-50">
+        <div className="md:hidden bg-gray-900/95 backdrop-blur-lg text-white fixed top-0 right-0 w-full h-screen z-50">
           <div className="flex justify-end p-4">
             <button
               onClick={() => setIsMenuOpen(false)}
