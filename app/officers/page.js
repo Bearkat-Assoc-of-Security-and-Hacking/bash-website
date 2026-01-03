@@ -66,15 +66,6 @@ const advisor = [
       linkedin: "https://www.linkedin.com/in/kirk-burns-cissp-4a629115/",
     },
   },
-  {
-    name: "Dustin Thornton",
-    title: "On-campus Advisor",
-    details: "SOC Manager ",
-    socials: {
-      email: "mailto:dustin.thornton@shsu.edu",
-      linkedin: "https://www.linkedin.com/in/dustin-c-thornton/",
-    },
-  },
 ];
 
 const alumni = [
