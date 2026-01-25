@@ -95,11 +95,19 @@ const alumni = [
     },
   },
   {
-    name: "James Robbins",
-    title: "SHSU Comp-sci Graduate",
-    details: "Software Engineer at LDARTools",
+    name: "Daniel Perez",
+    title: "Former Competition Director",
+    details: "Working on a goverment black site",
     socials: {
-      linkedin: "https://www.linkedin.com/in/james-robbins-44b731219/",
+      linkedin: "https://www.linkedin.com/in/daniel-p-b45369200/",
+    },
+  },
+   {
+    name: "Caleb Caballero",
+    title: "Pentester and Web Administrator",
+    details: "Inside the matrix",
+    socials: {
+      linkedin: "https://www.linkedin.com/in/caleb-c-a6a0a7271/",
     },
   },
 ];
