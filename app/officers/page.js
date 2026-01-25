@@ -105,7 +105,7 @@ const alumni = [
    {
     name: "Caleb Caballero",
     title: "Pentester and Web Administrator",
-    details: "Inside the matrix",
+    details: "Working inside the matrix",
     socials: {
       linkedin: "https://www.linkedin.com/in/caleb-c-a6a0a7271/",
     },
