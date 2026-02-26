@@ -34,26 +34,6 @@ const officers = [
       github: "",
     },
   },
-  {
-    name: "Ayden Sowers",
-    title: "Education Director and Treasurer",
-    details: "",
-    socials: {
-      email: "mailto:aqs002@SHSU.EDU",
-      linkedin: "",
-      github: "",
-    },
-  },
-  {
-    name: "Chase Cooper",
-    title: "Secretary",
-    details: "",
-    socials: {
-      email: "mailto:cmc233@SHSU.EDU",
-      linkedin: "https://www.linkedin.com/in/chase-cooper-9491b7308/",
-      github: "",
-    },
-  },
 ];
 
 const advisor = [
